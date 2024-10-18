@@ -1,6 +1,6 @@
 {
   "name": "@repliers.io/api-types",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Typings for repliers API",
   "types": "types/index.d.ts",
   "scripts": {
