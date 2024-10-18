@@ -10,5 +10,19 @@
   "license": "MIT",
   "devDependencies": {
     "typescript": "^5.6.3"
-  }
+  },
+  "main": "types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Repliers-io/api-types.ts.git"
+  },
+  "keywords": [
+    "repliers.io",
+    "repliers",
+    "typescript"
+  ],
+  "bugs": {
+    "url": "https://github.com/Repliers-io/api-types.ts/issues"
+  },
+  "homepage": "https://github.com/Repliers-io/api-types.ts#readme"
 }
