@@ -1,8 +1,8 @@
 {
   "name": "@repliers.io/api-types",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Typings for repliers API",
-  "types": "types/index.d.ts",
+  "types": "types/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
