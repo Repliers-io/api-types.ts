@@ -1,8 +1,8 @@
 {
    "name": "@repliers.io/api-types",
-   "version": "0.1.5",
+   "version": "0.1.6",
    "description": "Typings for repliers API",
-   "types": "types/index.ts",
+   "types": "types/index.d.ts",
    "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
    },
@@ -11,7 +11,7 @@
    "devDependencies": {
       "typescript": "^5.6.3"
    },
-   "main": "types/index.ts",
+   "main": "types/index.d.ts",
    "files": [
       "types/**/*"
    ],
