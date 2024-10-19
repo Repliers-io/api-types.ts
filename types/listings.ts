@@ -11,7 +11,7 @@ import {
    Status,
    Type,
    YesNo,
-} from "..";
+} from "./index.js";
 
 export interface Single extends Record<string, unknown> {
    listDate: string;

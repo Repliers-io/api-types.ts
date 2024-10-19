@@ -1,4 +1,4 @@
-import { ApiRequest, ApiResponse, DateFormat, YesNo } from "..";
+import { ApiRequest, ApiResponse, DateFormat, YesNo } from "./index.js";
 
 export interface AddCondominium {
    ammenities?: string[];

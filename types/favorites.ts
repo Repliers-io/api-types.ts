@@ -1,4 +1,4 @@
-import { ApiRequest, ApiResponse } from "..";
+import { ApiRequest, ApiResponse } from "./index.js";
 
 export interface AddRequest extends ApiRequest {
    clientId: number;

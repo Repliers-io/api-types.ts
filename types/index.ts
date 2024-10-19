@@ -1,9 +1,9 @@
-export * as Clients from "./clients";
-export * as Estimate from './estimate';
-export * as Favorites from './favorites';
-export * as Listings from './listings';
-export * as Messages from './messages';
-export * as Searches from './searches';
+export * as Clients from "./clients.js";
+export * as Estimate from './estimate.js';
+export * as Favorites from './favorites.js';
+export * as Listings from './listings.js';
+export * as Messages from './messages.js';
+export * as Searches from './searches.js';
 
 export interface ApiRequest extends Record<string, unknown> {}
 export interface ApiResponse extends Record<string, unknown> {}
