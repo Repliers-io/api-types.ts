@@ -302,3 +302,17 @@ export interface LocationsResponse extends ApiResponse {
       },
    ];
 }
+
+export interface NlpRequest extends ApiRequest {
+
+}
+
+export interface NlpResponse extends ApiResponse {
+   request: {
+      url?: string;
+      params?: Record<string, string>;
+      body: Record<string, unknown>;
+      summary: string;
+   };
+   nlpId: string;
+}

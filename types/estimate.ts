@@ -35,6 +35,7 @@ export interface AddOwnerHistoryImprovements {
 export interface AddOwnerHistory {
    purchasePrice?: number;
    purchaseDate?: DateFormat;
+   imageUrl?: string;
    improvements?: AddOwnerHistoryImprovements;
 }
 
@@ -156,3 +157,8 @@ export interface DeleteRequest extends ApiRequest {
 export interface DeleteResponse extends ApiRequest {
    estimateId: number;
 }
+
+export interface PatchRequest extends Omit<AddRequest, "ownerHistory" | "boardId"> {
+   estimateId: number;
+}
+export interface PatchResponse extends GetResponse { }
