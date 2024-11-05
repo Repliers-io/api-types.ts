@@ -17,11 +17,13 @@ export interface AddCondominium {
    stories?: number;
 }
 
+//TODO: AddOwnerHistoryRoomsAdded is Portal-Backend type, not Repliers API. Let's move it back to Portal-Backend
 export interface AddOwnerHistoryRoomsAdded {
    count: number;
    year: DateFormat;
 }
 
+//TODO: AddOwnerHistoryImprovements is Portal-Backend type, not Repliers API. Let's move it back to Portal-Backend
 export interface AddOwnerHistoryImprovements {
    maintenanceSpent?: number;
    improvementSpent?: number;
@@ -32,6 +34,7 @@ export interface AddOwnerHistoryImprovements {
    bathroomsAdded?: AddOwnerHistoryRoomsAdded;
 }
 
+//TODO: AddOwnerHistory is Portal-Backend type, not Repliers API. Let's move it back to Portal-Backend
 export interface AddOwnerHistory {
    purchasePrice?: number;
    purchaseDate?: DateFormat;
@@ -70,6 +73,7 @@ export interface Estimate {
          depth: string;
          width: string;
       };
+      //TODO: data field is undocumented. Let's remove it and move to Portal-Backend for now
       data?: AddOwnerHistory;
    };
    history?: {
@@ -121,6 +125,7 @@ export interface AddRequest extends ApiRequest {
    taxes?: {
       annualAmount: number;
    };
+   //TODO: ownerHistory field belongs to Portal-Backend for now, it's not in Repliers APIs
    ownerHistory?: AddOwnerHistory;
 }
 
@@ -129,7 +134,6 @@ export interface AddResponse extends ApiResponse {
    estimateLow: number;
    estimateHigh: number;
    confidence: number;
-   // request: Record<string, unknown>;
    request: AddRequest;
    history?: {
       mth: Record<string, { value: number }>;
@@ -158,6 +162,7 @@ export interface DeleteResponse extends ApiRequest {
    estimateId: number;
 }
 
+// TODO: ownerHistory is Portal-backend field, not Repliers API
 export interface PatchRequest extends Omit<AddRequest, "ownerHistory" | "boardId"> {
    estimateId: number;
 }

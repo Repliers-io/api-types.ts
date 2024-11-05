@@ -15,9 +15,11 @@ import {
 
 export interface Listing extends Record<string, unknown> {
    listDate: string;
-   rooms: Record<string, unknown>[];
-   timestamps: Record<string, string | null>;
-   condominium: Record<string, unknown>;
+   rooms: Record<string, unknown>[]; //TODO: let's add types from Response here
+   timestamps: Record<string, string | null>; //TODO: let's add types from Response here
+
+   // TODO: AddCondominium already has a chunk of fields that "condominium" fields has 
+   condominium: Record<string, unknown>; //TODO: let's add types from Response here
    taxes: {
       annualAmount: number;
       assessmentYear: number;
@@ -27,33 +29,33 @@ export interface Listing extends Record<string, unknown> {
    };
    images: string[];
    type: Type;
-   nearby: Record<string, unknown>;
+   nearby: Record<string, unknown>; //TODO: let's add types from Response here
    photoCount: number;
-   lot: Record<string, unknown>;
+   lot: Record<string, unknown>; //TODO: let's add types from Response here
    mlsNumber: string;
-   openHouse: Array<Record<string, unknown>>;
+   openHouse: Array<Record<string, unknown>>; //TODO: let's add types from Response here
    permissions: {
       displayAddressOnInternet: YesNo;
       displayPublic: YesNo;
       displayInternetEntireListing: YesNo;
    };
    soldPrice: string; // 0.00
-   details: Record<string, unknown>;
-   class: string; // ResidentialProperty
+   details: Record<string, unknown>; //TODO: add fields from Repliers Reponse
+   class: string; // ResidentialProperty //TODO: let's add types here
    map: {
       latitude: string;
       point: string;
       longitude: string;
    };
-   address: Record<string, unknown>;
+   address: Record<string, unknown>; //TODO: add fields from Repliers Reponse
    resource: string;
-   updatedOn: string;
+   updatedOn: string; //TODO: Can we type the string with ISO timestamp in it? "2024-11-05T18:21:33.284Z" like we did with date?
    daysOnMarket: number;
-   agents: Array<{
+   agents: Array<{ //TODO: add fields from Repliers Reponse
       [key: string]: unknown;
       agentId: number;
    }>;
-   coopCompensation: unknown | null;
+   coopCompensation: unknown | null; //TODO: it looks like a string in the Response
    listPrice: string;
    lastStatus: LastStatus; // New
    status: Status;
@@ -61,7 +63,11 @@ export interface Listing extends Record<string, unknown> {
    comparables: Partial<Listing>[];
    history: Partial<Listing>[];
 }
+
+//TODO: RollingPeriodName is actually grp-{x}-days. Can we somehow type it?
 export type RollingPeriodName = "grp-30-days" | "grp-90-days" | "grp-365-days";
+
+//TODO: I think RollingPeriod can have other values except 'count' and 'avg' inside depending on what stats we request
 export interface RollingPeriod {
    [key: string]: {
       count: number;
@@ -171,6 +177,7 @@ export interface SearchRequest extends ApiRequest {
    sqft?: string[];
    statistics?: string;
    status?: Status[];
+   //TODO: let's call aggregate and see what streetDirection can be
    streetDirection?: string; // W in examples, maybe enum with N, E, W, S?
    streetName?: string;
    streetNumber?: string;
@@ -180,11 +187,17 @@ export interface SearchRequest extends ApiRequest {
    unitNumber?: string;
    updatedOn?: DateFormat;
    waterSource?: string[];
+   // TODO: I can see in API response "repliersUpdatedOn": "2024-11-05T17:28:32.132Z" so not DateFormat
+   // is it like that in request?
    repliersUpdatedOn?: DateFormat;
+   // TODO: I don't see array in the API response. Just a string?
+   // is it like that in request?
    sewer?: string[];
    state?: string;
    streetSuffix?: string;
    waterfront?: YesNo;
+   // TODO: I don't see array in the API response. Just a string?
+   // is it like that in request?
    yearBuilt?: string[];
    zip?: string;
    zoning?: string;
@@ -200,6 +213,7 @@ export interface SearchResponse extends ApiResponse {
    listings: Array<Listing>;
    statistics: {
       soldPrice: {
+         //TODO: it can actually be "grp-{x}-days" not only "grp-30-days"
          "grp-30-days": RollingPeriod;
          "grp-90-days": RollingPeriod;
          "grp-365-days": RollingPeriod;
@@ -255,7 +269,9 @@ export interface LocationsRequest extends ApiRequest {
    neighborhood?: string;
    class: Class[];
    boardId?: number;
+   // TODO: I think dropCoordinates is somethng on Portal-Backend side not on the Repliers API side
    dropCoordinates: boolean;
+   // TODO: I think activeCountLimit is somethng on Portal-Backend side not on the Repliers API side
    activeCountLimit?: number;
 }
 export interface Location {
