@@ -39,7 +39,7 @@ export interface AddOwnerHistory {
    improvements?: AddOwnerHistoryImprovements;
 }
 
-export interface Single {
+export interface Estimate {
    estimateId: number;
    clientId: number;
    createdOn: string;
@@ -73,7 +73,7 @@ export interface Single {
       data?: AddOwnerHistory;
    };
    history?: {
-      mth: Record<"string", { value: number }>;
+      mth: Record<string, { value: number }>;
    };
 }
 
@@ -132,7 +132,7 @@ export interface AddResponse extends ApiResponse {
    // request: Record<string, unknown>;
    request: AddRequest;
    history?: {
-      mth: Record<"string", { value: number }>;
+      mth: Record<string, { value: number }>;
    };
 }
 
@@ -147,7 +147,7 @@ export interface GetResponse extends ApiRequest {
    numPages: number;
    pageSize: number;
    count: number;
-   estimates: Single[];
+   estimates: Estimate[];
 }
 
 export interface DeleteRequest extends ApiRequest {

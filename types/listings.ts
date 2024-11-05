@@ -13,7 +13,7 @@ import {
    YesNo,
 } from "./index.js";
 
-export interface Single extends Record<string, unknown> {
+export interface Listing extends Record<string, unknown> {
    listDate: string;
    rooms: Record<string, unknown>[];
    timestamps: Record<string, string | null>;
@@ -55,11 +55,11 @@ export interface Single extends Record<string, unknown> {
    }>;
    coopCompensation: unknown | null;
    listPrice: string;
-   lastStatus: string; // New
+   lastStatus: LastStatus; // New
    status: Status;
    boardId: number;
-   comparables: Partial<Single>[];
-   history: Partial<Single>[];
+   comparables: Partial<Listing>[];
+   history: Partial<Listing>[];
 }
 export type RollingPeriodName = "grp-30-days" | "grp-90-days" | "grp-365-days";
 export interface RollingPeriod {
@@ -197,7 +197,7 @@ export interface SearchResponse extends ApiResponse {
    numPages: number;
    pageSize: number;
    count: number;
-   listings: Array<Single>;
+   listings: Array<Listing>;
    statistics: {
       soldPrice: {
          "grp-30-days": RollingPeriod;
@@ -241,13 +241,13 @@ export interface SimilarRequest extends ApiRequest {
 }
 export interface SimilarResponse extends ApiResponse {}
 
-export interface SingleRequest extends ApiRequest {
+export interface ListingRequest extends ApiRequest {
    mlsNumber?: string;
    boardId?: number;
    fields?: string;
 }
 
-export interface SingleResponse extends ApiResponse, Single {}
+export interface ListingResponse extends ApiResponse, Listing {}
 
 export interface LocationsRequest extends ApiRequest {
    area?: string;
