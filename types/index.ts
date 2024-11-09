@@ -76,11 +76,12 @@ export enum Operator {
    OR = "OR",
 }
 
-export type SimilarSortBy = 
-   | SortBy.updatedOnDesc
-   | SortBy.updatedOnAsc
-   | SortBy.createdOnAsc
-   | SortBy.createdOnDesc
+export enum SimilarSortBy {
+   "updatedOnDesc" = "updatedOnDesc",
+   "updatedOnAsc" = "updatedOnAsc",
+   "createdOnAsc" = "createdOnAsc",
+   "createdOnDesc" = "createdOnDesc",
+}
 
 export enum SortBy {
    createdOnDesc = "createdOnDesc",

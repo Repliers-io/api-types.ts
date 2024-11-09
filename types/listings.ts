@@ -13,13 +13,175 @@ import {
    YesNo,
 } from "./index.js";
 
+export interface Room {
+   [key: string]: unknown;
+   features: string,
+   level: string,
+   length: string,
+   width: string,
+   description: string,
+}
+
+export interface Timestamp {
+   repliersUpdatedOn: string;
+   terminatedDate: string | null;
+   conditionalExpiryDate: string | null;
+   listingUpdated: string;
+   extensionEntryDate: string | null;
+   unavailableDate: string | null;
+   expiryDate: string;
+   listingEntryDate: string;
+   closedDate: string | null;
+   possessionDate: string;
+   idxUpdated: string | null;
+   photosUpdated: string;
+   suspendedDate: string | null;
+}
+
+export interface Condominium {
+   pets: Record<string, unknown>;
+   condoCorpNum: Record<string, unknown>;
+   parkingType: Record<string, unknown>;
+   fees: {
+      cableIncl: string;
+      waterIncl: string;
+      heatIncl: string;
+      taxesIncl: Record<string, unknown>;
+      parkingIncl: string;
+      maintenance: Record<string, unknown>;
+      hydroIncl: string;
+   },
+   stories: Record<string, unknown>;
+   propertyMgr: Record<string, unknown>;
+   lockerLevel: Record<string, unknown>;
+   unitNumber: Record<string, unknown>;
+   locker: Record<string, unknown>;
+   condoCorp: Record<string, unknown>;
+   sharesPercentage: Record<string, unknown>;
+   ensuiteLaundry: Record<string, unknown>;exposure: Record<string, unknown>;
+   lockerNumber: string;
+   lockerUnitNumber: Record<string, unknown>;
+   ammenities: Record<string, unknown>[];
+}
+
+export interface OpenHouse {
+   date: string;
+   startTime: string;
+   endTime: string;
+   type: null | string;
+   status: null | string;
+}
+
+// I bet this is not full list, and feilds can be added dynamically
+// So maybe extends it from Record<string, unknown>
+export interface Details {
+   numKitchens: string;
+   numParkingSpaces: string;
+   laundryLevel: string;
+   zoningDescription: Record<string, unknown>;
+   moreInformationLink: Record<string, unknown>;
+   certificationLevel: string;
+   den: YesNo;
+   yearBuilt: string;
+   alternateURLVideoLink: Record<string, unknown>;
+   exteriorConstruction1: string;
+   elevator: string;
+   exteriorConstruction2: string;
+   roofMaterial: Record<string, unknown>;
+   zoning: string;
+   basement1: string;
+   basement2: string;
+   sqft: string;
+   handicappedEquipped: string;
+   heating: string;
+   numRooms: string;
+   landscapeFeatures: Record<string, unknown>;
+   virtualTourUrl: string;
+   landSewer: Record<string, unknown>;
+   energyCertification: string;
+   numBathrooms: string;
+   greenPropertyInformationStatement: string;
+   liveStreamEventURL: Record<string, unknown>;
+   zoningType: Record<string, unknown>;
+   landAccessType: Record<string, unknown>;
+   businessSubType: Record<string, unknown>;
+   numKitchensPlus: string;
+   bathrooms: Record<string, {
+      pieces: string;
+      level: string;
+      count: string;
+   }>;
+   swimmingPool: string;
+   constructionStyleSplitLevel: Record<string, unknown>;
+   leaseTerms: string;
+   numRoomsPlus: string;
+   flooringType: Record<string, unknown>;
+   farmType: Record<string, unknown>;
+   landDisposition: Record<string, unknown>;
+   viewType: Record<string, unknown>;
+   style: string;
+   loadingType: Record<string, unknown>;
+   numGarageSpaces: string;
+   parkCostMonthly: string;
+   airConditioning: string;
+   familyRoom: YesNo;
+   constructionStatus: Record<string, unknown>;
+   numBedrooms: string;
+   description: string;
+   extras: string;
+   livingAreaMeasurement: Record<string, unknown>;
+   patio: Record<string, unknown>;
+   amperage: Record<string, unknown>;
+   centralAirConditioning: string;
+   furnished: string;
+   foundationType: Record<string, unknown>;
+   sewer: string;
+   propertyType: string;
+   HOAFee: Record<string, unknown>;
+   commonElementsIncluded: string;
+   numDrivewaySpaces: Record<string, unknown>;
+   numBathroomsPlus: string | null;
+   ceilingType: Record<string, unknown>;
+   waterSource: string;
+   numBedroomsPlus: string;
+   garage: string;
+   centralVac: string;
+   sqftRange: Record<string, unknown>;
+   driveway: string;
+   numFireplaces: YesNo;
+   energuideRating: Record<string, unknown>;
+   fireProtection: Record<string, unknown>;
+   storageType: Record<string, unknown>;
+   analyticsClick: Record<string, unknown>;
+   businessType: Record<string, unknown>;
+   numBathroomsHalf: Record<string, unknown>;
+}
+
+export type ListingClass = "ResidentialProperty"
+
+export interface Address {
+   area: string;
+   zip: string;
+   country: string | null;
+   city:  string;
+   streetNumber: string;
+   unitNumber: string;
+   streetDirection: string;
+   streetName: string;
+   streetDirectionPrefix: Record<string, unknown>;
+   district: string;
+   streetSuffix: string;
+   neighborhood: string;
+   state: string;
+   majorIntersection: string;
+   communityCode: string;
+}
+
 export interface Listing extends Record<string, unknown> {
    listDate: string;
-   rooms: Record<string, unknown>[]; //TODO: let's add types from Response here
-   timestamps: Record<string, string | null>; //TODO: let's add types from Response here
-
-   // TODO: AddCondominium already has a chunk of fields that "condominium" fields has 
-   condominium: Record<string, unknown>; //TODO: let's add types from Response here
+   rooms: Record<string, Room>;
+   timestamps: Record<string, Timestamp>;
+   condominium: Record<string, Condominium>;
    taxes: {
       annualAmount: number;
       assessmentYear: number;
@@ -29,33 +191,43 @@ export interface Listing extends Record<string, unknown> {
    };
    images: string[];
    type: Type;
-   nearby: Record<string, unknown>; //TODO: let's add types from Response here
+   nearby: {
+      ammenities: string[];
+   }
    photoCount: number;
-   lot: Record<string, unknown>; //TODO: let's add types from Response here
+   lot: {
+      depth: string;
+      size: Record<string, unknown>;
+      width: string;
+      irregular: string;
+      acres: string;
+      legalDescription: string;
+      measurement: string;
+   }
    mlsNumber: string;
-   openHouse: Array<Record<string, unknown>>; //TODO: let's add types from Response here
+   openHouse: Array<Record<string, OpenHouse>>;
    permissions: {
       displayAddressOnInternet: YesNo;
       displayPublic: YesNo;
       displayInternetEntireListing: YesNo;
    };
    soldPrice: string; // 0.00
-   details: Record<string, unknown>; //TODO: add fields from Repliers Reponse
-   class: string; // ResidentialProperty //TODO: let's add types here
+   details: Details;
+   class: Class;
    map: {
       latitude: string;
       point: string;
       longitude: string;
    };
-   address: Record<string, unknown>; //TODO: add fields from Repliers Reponse
+   address: Address;
    resource: string;
-   updatedOn: string; //TODO: Can we type the string with ISO timestamp in it? "2024-11-05T18:21:33.284Z" like we did with date?
+   updatedOn: string;
    daysOnMarket: number;
-   agents: Array<{ //TODO: add fields from Repliers Reponse
+   agents: Array<{
       [key: string]: unknown;
       agentId: number;
    }>;
-   coopCompensation: unknown | null; //TODO: it looks like a string in the Response
+   coopCompensation: string | null;
    listPrice: string;
    lastStatus: LastStatus; // New
    status: Status;
@@ -64,14 +236,17 @@ export interface Listing extends Record<string, unknown> {
    history: Partial<Listing>[];
 }
 
-//TODO: RollingPeriodName is actually grp-{x}-days. Can we somehow type it?
-export type RollingPeriodName = "grp-30-days" | "grp-90-days" | "grp-365-days";
+export type RollingPeriodName<Days extends `${number}` = "30" | "90" | "365"> = `grp-${Days}-days` | 'grp-day' | 'grp-mth' | 'grp-yr';
 
-//TODO: I think RollingPeriod can have other values except 'count' and 'avg' inside depending on what stats we request
 export interface RollingPeriod {
    [key: string]: {
       count: number;
-      avg: number;
+      avg?: number;
+      sum?: number;
+      med?: number;
+      min?: number;
+      max?: number;
+      sd?: number;
    };
 }
 export interface ImageSearchItemBase {
@@ -90,6 +265,14 @@ export interface ImageSearchUrl extends ImageSearchItemBase {
 }
 
 export type ImageSearchItem = ImageSearchValue | ImageSearchUrl;
+
+export enum StreetDirection {
+   N = "n",
+   E = "e",
+   W = "w",
+   S = "s",
+   Empty = ""
+ }
 
 export interface SearchRequest extends ApiRequest {
    agent?: string[];
@@ -175,10 +358,10 @@ export interface SearchRequest extends ApiRequest {
    searchFields?: string;
    sortBy?: SortBy;
    sqft?: string[];
+   // Actually it's coma-separated string of Statistics enum values, don't know how to type it
    statistics?: string;
    status?: Status[];
-   //TODO: let's call aggregate and see what streetDirection can be
-   streetDirection?: string; // W in examples, maybe enum with N, E, W, S?
+   streetDirection?: StreetDirection[];
    streetName?: string;
    streetNumber?: string;
    style?: string[];
@@ -187,17 +370,11 @@ export interface SearchRequest extends ApiRequest {
    unitNumber?: string;
    updatedOn?: DateFormat;
    waterSource?: string[];
-   // TODO: I can see in API response "repliersUpdatedOn": "2024-11-05T17:28:32.132Z" so not DateFormat
-   // is it like that in request?
-   repliersUpdatedOn?: DateFormat;
-   // TODO: I don't see array in the API response. Just a string?
-   // is it like that in request?
+   repliersUpdatedOn?: string;
    sewer?: string[];
    state?: string;
    streetSuffix?: string;
    waterfront?: YesNo;
-   // TODO: I don't see array in the API response. Just a string?
-   // is it like that in request?
    yearBuilt?: string[];
    zip?: string;
    zoning?: string;
@@ -205,6 +382,7 @@ export interface SearchRequest extends ApiRequest {
       imageSearchItems?: ImageSearchItem[];
    };
 }
+
 export interface SearchResponse extends ApiResponse {
    page: number;
    numPages: number;
@@ -212,11 +390,7 @@ export interface SearchResponse extends ApiResponse {
    count: number;
    listings: Array<Listing>;
    statistics: {
-      soldPrice: {
-         //TODO: it can actually be "grp-{x}-days" not only "grp-30-days"
-         "grp-30-days": RollingPeriod;
-         "grp-90-days": RollingPeriod;
-         "grp-365-days": RollingPeriod;
+      soldPrice: Record<RollingPeriodName, RollingPeriod> & {
          avg: number;
          med: number;
          sum: number;
@@ -269,10 +443,7 @@ export interface LocationsRequest extends ApiRequest {
    neighborhood?: string;
    class: Class[];
    boardId?: number;
-   // TODO: I think dropCoordinates is somethng on Portal-Backend side not on the Repliers API side
-   dropCoordinates: boolean;
-   // TODO: I think activeCountLimit is somethng on Portal-Backend side not on the Repliers API side
-   activeCountLimit?: number;
+   search?: string;
 }
 export interface Location {
    lat: number;
@@ -285,14 +456,15 @@ export interface Neighborhood {
    name: string;
    activeCount: number;
    location: Location;
-   coordinates?: LocationCoordinates;
+   coordinates: LocationCoordinates | null;
 }
 
 export interface City {
    name: string;
    activeCount: number;
    location: Location;
-   coordinates?: LocationCoordinates;
+   coordinates: LocationCoordinates | null;
+   state: string;
    neighborhoods: Array<Neighborhood>;
 }
 export interface Area {
