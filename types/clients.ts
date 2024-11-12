@@ -43,8 +43,10 @@ export interface UpdateRequest extends Omit<CreateRequest, "email">, ApiRequest 
    clientId: number;
 }
 
+//TODO: add response details
 export interface UpdateResponse extends ApiResponse {}
 
+//TODO: add response details
 export interface DeleteResponse extends ApiResponse {}
 export interface GetResponse extends ApiResponse, Client {}
 

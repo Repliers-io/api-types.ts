@@ -19,6 +19,7 @@ export interface GetResponse extends ApiResponse {
    numPages: number;
    pageSize: number;
    count: number;
+   //TODO: we don't know what other fields are coming inside favorites except favoriteId?
    favorites: Array<{
       [key: string]: unknown;
       favoriteId: number;

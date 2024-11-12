@@ -272,7 +272,7 @@ export enum StreetDirection {
    W = "w",
    S = "s",
    Empty = ""
- }
+}
 
 export interface SearchRequest extends ApiRequest {
    agent?: string[];
@@ -390,10 +390,41 @@ export interface SearchResponse extends ApiResponse {
    count: number;
    listings: Array<Listing>;
    statistics: {
+      //TODO: soldPrice, listPrice, daysOnMarket, sqft should be optional as they depend on the statistics requested
+      // FULL list of statistics that can be requested without grouping
+      // statistics=avg-daysOnMarket,sum-daysOnMarket,min-daysOnMarket,max-daysOnMarket,avg-listPrice,sum-listPrice,min-listPrice,max-listPrice,avg-soldPrice,sum-soldPrice,min-soldPrice,max-soldPrice,cnt-new,cnt-closed,med-listPrice,med-soldPrice,med-daysOnMarket,sd-listPrice,sd-soldPrice,sd-daysOnMarket,avg-priceSqft,cnt-available
+      // TODO: Add 'available', 'new' and 'closed' objects to 'statistics'
+      // TODO: further adding 'grp-day', 'grp-mth', 'grp-yr' changes how statistics looks
+      //TODO: existence of 'sd', 'min', 'max' and others depend on the exact request
+      // Should we make the optional?
       soldPrice: Record<RollingPeriodName, RollingPeriod> & {
          avg: number;
+         min: number;
+         max: number;
          med: number;
+         sd: number;
          sum: number;
+         //TODO: mth should be optional depending on request to grp by month
+         mth: Record<
+            string,
+            {
+               avg: number;
+               med: number;
+               count: number;
+               sum: number;
+            }
+         >;
+      };
+      //TODO: existence of 'sd', 'min', 'max' and others depend on the exact request
+      // Should we make the optional?
+      listPrice: Record<RollingPeriodName, RollingPeriod> & {
+         avg: number;
+         min: number;
+         max: number;
+         med: number;
+         sd: number;
+         sum: number;
+         //TODO: mth should be optional depending on request to grp by month
          mth: Record<
             string,
             {
@@ -405,8 +436,13 @@ export interface SearchResponse extends ApiResponse {
          >;
       };
       daysOnMarket: {
-         med: number;
          avg: number;
+         min: number;
+         max: number;
+         med: number;
+         sd: number;
+         sum: number;
+         //TODO: mth should be optional depending on request to grp by month
          mth: Record<
             string,
             {
@@ -416,6 +452,10 @@ export interface SearchResponse extends ApiResponse {
             }
          >;
       };
+      sqft: {
+         avgPriceLow: number;
+         avgPriceHigh: number;
+      }
    };
 }
 
