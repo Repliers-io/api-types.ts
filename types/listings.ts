@@ -396,8 +396,8 @@ export interface BaseStat {
    med?: number;
    sd?: number;
    sum?: number;
-   mth?: Record<string, BaseStat & { count: number }>;
-   yr?:  Record<string, BaseStat & { count: number }>;
+   mth?: Record<string, Omit<BaseStat & { count: number }, "mth">>
+   yr?:  Record<string, Omit<BaseStat & { count: number }, "mth">>
 }
 
 export interface SearchResponse extends ApiResponse {
@@ -409,13 +409,13 @@ export interface SearchResponse extends ApiResponse {
    statistics: {
       new?: {
          count: number;
-         mth: unknown;
-         yr: unknown;
+         mth: Record<string, { count: number }>;
+         yr: Record<string, { count: number }>;
       };
       closed?: {
          count: number;
-         mth: unknown;
-         yr: unknown;
+         mth: Record<string, { count: number }>;
+         yr: Record<string, { count: number }>;
       };
       soldPrice?: Record<RollingPeriodName, RollingPeriod> & BaseStat;
       listPrice?: Record<RollingPeriodName, RollingPeriod> & BaseStat;
