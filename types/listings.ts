@@ -396,8 +396,8 @@ export interface BaseStat {
    med?: number;
    sd?: number;
    sum?: number;
-   mth?: Record<string, Omit<BaseStat & { count: number }, "mth">>
-   yr?:  Record<string, Omit<BaseStat & { count: number }, "mth">>
+   mth?: Record<string, Omit<BaseStat & { count: number }, "mth" | "yr">>
+   yr?:  Record<string, Omit<BaseStat & { count: number }, "mth" | "yr">>
 }
 
 export interface SearchResponse extends ApiResponse {
