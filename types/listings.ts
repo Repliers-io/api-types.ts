@@ -389,6 +389,8 @@ export interface SearchRequest extends ApiRequest {
    };
 }
 
+export type RangeStat = Omit<BaseStat & { count: number }, "mth" | "yr">
+
 export interface BaseStat {
    avg?: number;
    min?: number;
@@ -396,8 +398,8 @@ export interface BaseStat {
    med?: number;
    sd?: number;
    sum?: number;
-   mth?: Record<string, Omit<BaseStat & { count: number }, "mth" | "yr">>
-   yr?:  Record<string, Omit<BaseStat & { count: number }, "mth" | "yr">>
+   mth?: Record<string, RangeStat>
+   yr?:  Record<string, RangeStat>
 }
 
 export interface SearchResponse extends ApiResponse {
