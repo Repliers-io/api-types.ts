@@ -389,6 +389,17 @@ export interface SearchRequest extends ApiRequest {
    };
 }
 
+export interface BaseStat {
+   avg?: number;
+   min?: number;
+   max?: number;
+   med?: number;
+   sd?: number;
+   sum?: number;
+   mth?: Record<string, BaseStat & { count: number }>;
+   yr?:  Record<string, BaseStat & { count: number }>;
+}
+
 export interface SearchResponse extends ApiResponse {
    page: number;
    numPages: number;
@@ -406,60 +417,16 @@ export interface SearchResponse extends ApiResponse {
          mth: unknown;
          yr: unknown;
       };
-      soldPrice?: Record<RollingPeriodName, RollingPeriod> & {
-         avg: number;
-         min: number;
-         max: number;
-         med: number;
-         sd: number;
-         sum: number;
-         mth: Record<
-            string,
-            {
-               avg: number;
-               med: number;
-               count: number;
-               sum: number;
-            }
-         >;
-      };
-
-      listPrice?: Record<RollingPeriodName, RollingPeriod> & {
-         avg: number;
-         min: number;
-         max: number;
-         med: number;
-         sd: number;
-         sum: number;
-         mth: Record<
-            string,
-            {
-               avg: number;
-               med: number;
-               count: number;
-               sum: number;
-            }
-         >;
-      };
-      daysOnMarket?: {
-         avg: number;
-         min: number;
-         max: number;
-         med: number;
-         sd: number;
-         sum: number;
-         mth: Record<
-            string,
-            {
-               avg: number;
-               med: number;
-               count: number;
-            }
-         >;
-      };
-      sqft: {
+      soldPrice?: Record<RollingPeriodName, RollingPeriod> & BaseStat;
+      listPrice?: Record<RollingPeriodName, RollingPeriod> & BaseStat;
+      daysOnMarket?: Record<RollingPeriodName, RollingPeriod> & BaseStat;
+      sqft?: {
          avgPriceLow: number;
          avgPriceHigh: number;
+         mth?: Record<string, {
+            avgPriceLow: number;
+            avgPriceHigh: number;
+         }>
       };
    };
 }
