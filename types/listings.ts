@@ -407,6 +407,11 @@ export interface SearchResponse extends ApiResponse {
    count: number;
    listings: Array<Listing>;
    statistics: {
+      available?: {
+         count: number;
+         mth: Record<string, { count: number }>;
+         yr: Record<string, { count: number }>;
+      }
       new?: {
          count: number;
          mth: Record<string, { count: number }>;
