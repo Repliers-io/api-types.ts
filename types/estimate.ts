@@ -101,17 +101,13 @@ export interface AddRequest extends ApiRequest {
    };
 }
 
-//TODO: AddResponse can have "request: AddRequest" in case this is a new estimate
-// OR 
-// it can have "payload: AddRequest" field in case request was done with clientId field
-//    AND such estimate already existed for the given clientId
-// we need to use EstimateCore as in the portal-backend repo now
 export interface AddResponse extends ApiResponse {
    estimate: number;
    estimateLow: number;
    estimateHigh: number;
    confidence: number;
-   request: AddRequest;
+   request?: AddRequest;
+   payload?: AddRequest;
    history?: {
       mth: Record<string, { value: number }>;
    };

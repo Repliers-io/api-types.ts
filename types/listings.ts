@@ -15,11 +15,11 @@ import {
 
 export interface Room {
    [key: string]: unknown;
-   features: string,
-   level: string,
-   length: string,
-   width: string,
-   description: string,
+   features: string;
+   level: string;
+   length: string;
+   width: string;
+   description: string;
 }
 
 export interface Timestamp {
@@ -50,7 +50,7 @@ export interface Condominium {
       parkingIncl: string;
       maintenance: Record<string, unknown>;
       hydroIncl: string;
-   },
+   };
    stories: Record<string, unknown>;
    propertyMgr: Record<string, unknown>;
    lockerLevel: Record<string, unknown>;
@@ -58,7 +58,8 @@ export interface Condominium {
    locker: Record<string, unknown>;
    condoCorp: Record<string, unknown>;
    sharesPercentage: Record<string, unknown>;
-   ensuiteLaundry: Record<string, unknown>;exposure: Record<string, unknown>;
+   ensuiteLaundry: Record<string, unknown>;
+   exposure: Record<string, unknown>;
    lockerNumber: string;
    lockerUnitNumber: Record<string, unknown>;
    ammenities: Record<string, unknown>[];
@@ -72,9 +73,7 @@ export interface OpenHouse {
    status: null | string;
 }
 
-// I bet this is not full list, and feilds can be added dynamically
-// So maybe extends it from Record<string, unknown>
-export interface Details {
+export interface Details extends Record<string, unknown> {
    numKitchens: string;
    numParkingSpaces: string;
    laundryLevel: string;
@@ -106,11 +105,14 @@ export interface Details {
    landAccessType: Record<string, unknown>;
    businessSubType: Record<string, unknown>;
    numKitchensPlus: string;
-   bathrooms: Record<string, {
-      pieces: string;
-      level: string;
-      count: string;
-   }>;
+   bathrooms: Record<
+      string,
+      {
+         pieces: string;
+         level: string;
+         count: string;
+      }
+   >;
    swimmingPool: string;
    constructionStyleSplitLevel: Record<string, unknown>;
    leaseTerms: string;
@@ -157,13 +159,13 @@ export interface Details {
    numBathroomsHalf: Record<string, unknown>;
 }
 
-export type ListingClass = "ResidentialProperty"
+export type ListingClass = "ResidentialProperty";
 
 export interface Address {
    area: string;
    zip: string;
    country: string | null;
-   city:  string;
+   city: string;
    streetNumber: string;
    unitNumber: string;
    streetDirection: string;
@@ -193,7 +195,7 @@ export interface Listing extends Record<string, unknown> {
    type: Type;
    nearby: {
       ammenities: string[];
-   }
+   };
    photoCount: number;
    lot: {
       depth: string;
@@ -203,7 +205,7 @@ export interface Listing extends Record<string, unknown> {
       acres: string;
       legalDescription: string;
       measurement: string;
-   }
+   };
    mlsNumber: string;
    openHouse: Array<Record<string, OpenHouse>>;
    permissions: {
@@ -236,7 +238,11 @@ export interface Listing extends Record<string, unknown> {
    history: Partial<Listing>[];
 }
 
-export type RollingPeriodName<Days extends `${number}` = "30" | "90" | "365"> = `grp-${Days}-days` | 'grp-day' | 'grp-mth' | 'grp-yr';
+export type RollingPeriodName<Days extends `${number}` = "30" | "90" | "365"> =
+   | `grp-${Days}-days`
+   | "grp-day"
+   | "grp-mth"
+   | "grp-yr";
 
 export interface RollingPeriod {
    [key: string]: {
@@ -271,7 +277,7 @@ export enum StreetDirection {
    E = "e",
    W = "w",
    S = "s",
-   Empty = ""
+   Empty = "",
 }
 
 export interface SearchRequest extends ApiRequest {
@@ -341,7 +347,7 @@ export interface SearchRequest extends ApiRequest {
    minPrice?: number;
    minRepliersUpdatedOn?: DateFormat;
    minSoldDate?: DateFormat;
-   minSoldPrice?: number; // string in docs
+   minSoldPrice?: string;
    minSqft?: number;
    minUnavailableDate?: DateFormat;
    minUpdatedOn?: DateFormat;
@@ -390,21 +396,23 @@ export interface SearchResponse extends ApiResponse {
    count: number;
    listings: Array<Listing>;
    statistics: {
-      //TODO: soldPrice, listPrice, daysOnMarket, sqft should be optional as they depend on the statistics requested
-      // FULL list of statistics that can be requested without grouping
-      // statistics=avg-daysOnMarket,sum-daysOnMarket,min-daysOnMarket,max-daysOnMarket,avg-listPrice,sum-listPrice,min-listPrice,max-listPrice,avg-soldPrice,sum-soldPrice,min-soldPrice,max-soldPrice,cnt-new,cnt-closed,med-listPrice,med-soldPrice,med-daysOnMarket,sd-listPrice,sd-soldPrice,sd-daysOnMarket,avg-priceSqft,cnt-available
-      // TODO: Add 'available', 'new' and 'closed' objects to 'statistics'
-      // TODO: further adding 'grp-day', 'grp-mth', 'grp-yr' changes how statistics looks
-      //TODO: existence of 'sd', 'min', 'max' and others depend on the exact request
-      // Should we make the optional?
-      soldPrice: Record<RollingPeriodName, RollingPeriod> & {
+      new?: {
+         count: number;
+         mth: unknown;
+         yr: unknown;
+      };
+      closed?: {
+         count: number;
+         mth: unknown;
+         yr: unknown;
+      };
+      soldPrice?: Record<RollingPeriodName, RollingPeriod> & {
          avg: number;
          min: number;
          max: number;
          med: number;
          sd: number;
          sum: number;
-         //TODO: mth should be optional depending on request to grp by month
          mth: Record<
             string,
             {
@@ -415,16 +423,14 @@ export interface SearchResponse extends ApiResponse {
             }
          >;
       };
-      //TODO: existence of 'sd', 'min', 'max' and others depend on the exact request
-      // Should we make the optional?
-      listPrice: Record<RollingPeriodName, RollingPeriod> & {
+
+      listPrice?: Record<RollingPeriodName, RollingPeriod> & {
          avg: number;
          min: number;
          max: number;
          med: number;
          sd: number;
          sum: number;
-         //TODO: mth should be optional depending on request to grp by month
          mth: Record<
             string,
             {
@@ -435,14 +441,13 @@ export interface SearchResponse extends ApiResponse {
             }
          >;
       };
-      daysOnMarket: {
+      daysOnMarket?: {
          avg: number;
          min: number;
          max: number;
          med: number;
          sd: number;
          sum: number;
-         //TODO: mth should be optional depending on request to grp by month
          mth: Record<
             string,
             {
@@ -455,7 +460,7 @@ export interface SearchResponse extends ApiResponse {
       sqft: {
          avgPriceLow: number;
          avgPriceHigh: number;
-      }
+      };
    };
 }
 
@@ -531,9 +536,7 @@ export interface LocationsResponse extends ApiResponse {
    ];
 }
 
-export interface NlpRequest extends ApiRequest {
-
-}
+export interface NlpRequest extends ApiRequest {}
 
 export interface NlpResponse extends ApiResponse {
    request: {
