@@ -23,6 +23,12 @@ export interface Room {
    level: string;
 }
 
+export interface Bathroom {
+   pieces: string;
+   level: string;
+   count: string;
+}
+
 //TODO: can we type it to ISO format "2024-11-21T00:00:00.000Z" ?
 export interface Timestamp {
    idxUpdated: string | null;
@@ -109,14 +115,7 @@ export interface Details extends Record<string, unknown> {
    landAccessType: Record<string, unknown>;
    businessSubType: Record<string, unknown>;
    numKitchensPlus: string | null;
-   bathrooms: Record<
-      string,
-      {
-         pieces: string;
-         level: string;
-         count: string;
-      }
-   >;
+   bathrooms: Record<string, Bathroom>;
    swimmingPool: string | null;
    constructionStyleSplitLevel: Record<string, unknown>;
    leaseTerms: string | null;
