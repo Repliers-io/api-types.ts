@@ -127,8 +127,13 @@ export enum SortBy {
    yearBuiltDesc = "yearBuiltDesc",
    yearBuiltAsc = "yearBuiltAsc",
    random = "random",
+   statusAscListDateAsc = "statusAscListDateAsc",
+   statusAscListDateDesc = "statusAscListDateDesc",
+   statusAscListPriceAsc = "statusAscListPriceAsc",
+   statusAscListPriceDesc = "statusAscListPriceDesc",
 }
 
+// TODO: how do we add grp-{x}-days here??
 export enum Statistics {
    "avg-daysOnMarket" = "avg-daysOnMarket",
    "sum-daysOnMarket" = "sum-daysOnMarket",
