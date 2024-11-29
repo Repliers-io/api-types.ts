@@ -364,6 +364,7 @@ export interface SearchRequest extends ApiRequest {
    maxBaths?: number;
    maxBeds?: number;
    maxBedsPlus?: number;
+   maxBedroomsTotal?: number;
    maxKitchens?: number;
    maxListDate?: string;
    maxMaintenanceFee?: number;
@@ -380,6 +381,7 @@ export interface SearchRequest extends ApiRequest {
    minBaths?: number;
    minBeds?: number;
    minBedsPlus?: number;
+   minBedroomsTotal?: number;
    minGarageSpaces?: number;
    minKitchens?: number;
    minListDate?: DateFormat;
