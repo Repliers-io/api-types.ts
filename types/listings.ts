@@ -321,6 +321,20 @@ export enum StreetDirection {
    Empty = "",
 }
 
+export enum CoverImage {
+   kitchen = "kitchen",
+   "powder room" = "powder room",
+   ensuite = "ensuite",
+   "family room" = "family room",
+   "exterior front" = "exterior front",
+   backyard = "backyard",
+   staircase = "staircase",
+   "primary bedroom" = "primary bedroom",
+   "laundry room" = "laundry room",
+   office = "office",
+   garage = "garage",
+}
+
 export interface SearchRequest extends ApiRequest {
    agent?: string[];
    aggregates?: Aggregates[];
@@ -340,7 +354,7 @@ export interface SearchRequest extends ApiRequest {
    clusterLimit?: number;
    clusterPrecision?: number;
    clusterStatistics?: boolean;
-   coverImage?: string;
+   coverImage?: CoverImage;
    den?: string;
    displayAddressOnInternet?: YesNo;
    displayInternetEntireListing?: YesNo;
@@ -362,25 +376,34 @@ export interface SearchRequest extends ApiRequest {
    map?: [number, number][][];
    mapOperator?: Operator;
    maxBaths?: number;
+   /** @deprecated use maxBedrooms field instead */
    maxBeds?: number;
+   maxBedrooms?: number;
+   /** @deprecated use maxBedroomsPlus field instead */
    maxBedsPlus?: number;
+   maxBedroomsPlus?: number;
    maxBedroomsTotal?: number;
    maxKitchens?: number;
-   maxListDate?: string;
+   maxListDate?: DateFormat;
    maxMaintenanceFee?: number;
    maxOpenHouseDate?: DateFormat;
    maxPrice?: number;
    maxRepliersUpdatedOn?: DateFormat;
    maxSoldDate?: DateFormat;
    maxSoldPrice?: number;
+   maxStreetNumber?: number; 
    maxSqft?: number;
    maxTaxes?: number;
    maxUnavailableDate?: DateFormat;
    maxUpdatedOn?: DateFormat;
    maxYearBuilt?: number;
    minBaths?: number;
+   /** @deprecated use minBedrooms field instead */
    minBeds?: number;
+   minBedrooms?: number;
+   /** @deprecated use minBedroomsPlus field instead */
    minBedsPlus?: number;
+   minBedroomsPlus?: number;
    minBedroomsTotal?: number;
    minGarageSpaces?: number;
    minKitchens?: number;
@@ -392,6 +415,7 @@ export interface SearchRequest extends ApiRequest {
    minSoldDate?: DateFormat;
    minSoldPrice?: string;
    minSqft?: number;
+   minStreetNumber?: number;
    minUnavailableDate?: DateFormat;
    minUpdatedOn?: DateFormat;
    minYearBuilt?: DateFormat;
@@ -400,29 +424,29 @@ export interface SearchRequest extends ApiRequest {
    officeId?: string;
    operator?: Operator;
    pageNum?: number;
-   propertyType?: string;
+   propertyType?: string[];
    radius?: number;
    resultsPerPage?: number;
    search?: string;
    searchFields?: string;
    sortBy?: SortBy;
    sqft?: string[];
-   // Actually it's coma-separated string of Statistics enum values, don't know how to type it
+   /** it's coma-separated string of Statistics enum values but we cannot type it properly in TS now */
    statistics?: string;
    status?: Status[];
    streetDirection?: StreetDirection[];
    streetName?: string;
    streetNumber?: string;
+   streetSuffix?: string;
    style?: string[];
    swimmingPool?: string[];
    type?: Type[];
-   unitNumber?: string;
+   unitNumber?: string[];
    updatedOn?: DateFormat;
    waterSource?: string[];
    repliersUpdatedOn?: string;
    sewer?: string[];
    state?: string;
-   streetSuffix?: string;
    waterfront?: YesNo;
    yearBuilt?: string[];
    zip?: string;

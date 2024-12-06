@@ -131,6 +131,8 @@ export enum SortBy {
    statusAscListDateDesc = "statusAscListDateDesc",
    statusAscListPriceAsc = "statusAscListPriceAsc",
    statusAscListPriceDesc = "statusAscListPriceDesc",
+   repliersUpdatedOnAsc = "repliersUpdatedOnAsc",
+   repliersUpdatedOnDesc = "repliersUpdatedOnDesc",
 }
 
 // TODO: how do we add grp-{x}-days here??
