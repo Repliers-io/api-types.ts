@@ -14,214 +14,224 @@ import {
 } from "./index.js";
 
 export interface Room {
-   description: string;
-   features: string | null;
-   features2: string | null;
-   features3: string | null;
-   length: string;
-   width: string;
-   level: string;
+   description?: string;
+   features?: string | null;
+   features2?: string | null;
+   features3?: string | null;
+   length?: string;
+   width?: string;
+   level?: string;
 }
 
 export interface Bathroom {
-   pieces: string;
-   level: string;
-   count: string;
+   pieces?: string;
+   level?: string;
+   count?: string;
 }
 
-//TODO: can we type it to ISO format "2024-11-21T00:00:00.000Z" ?
 export interface Timestamp {
-   idxUpdated: string | null;
-   listingUpdated: string | null;
-   photosUpdated: string | null;
-   conditionalExpiryDate: string | null;
-   terminatedDate: string | null;
-   suspendedDate: string | null;
-   listingEntryDate: string | null;
-   closedDate: string | null;
-   unavailableDate: string | null;
-   expiryDate: string | null;
-   extensionEntryDate: string | null;
-   possessionDate: string | null;
-   repliersUpdatedOn: string;
+   idxUpdated?: string | null;
+   listingUpdated?: string | null;
+   photosUpdated?: string | null;
+   conditionalExpiryDate?: string | null;
+   terminatedDate?: string | null;
+   suspendedDate?: string | null;
+   listingEntryDate?: string | null;
+   closedDate?: string | null;
+   unavailableDate?: string | null;
+   expiryDate?: string | null;
+   extensionEntryDate?: string | null;
+   possessionDate?: string | null;
+   repliersUpdatedOn?: string;
 }
 
 export interface Condominium {
-   ammenities: string[];
-   buildingInsurance: string | null;
-   condoCorp: string | null;
-   condoCorpNum: string | null;
-   exposure: string | null;
-   lockerNumber: string;
-   locker: string | null;
-   parkingType: string | null;
-   pets: string | null;
-   propertyMgr: string | null;
-   stories: string | null;
-   fees: {
-      cableIncl: YesNo | string | null;
-      heatIncl: YesNo | string | null;
-      hydroIncl: YesNo | string | null;
-      maintenance: string | null;
-      parkingIncl: YesNo | string | null;
-      taxesIncl: YesNo | string | null;
-      waterIncl: YesNo | string | null;
+   ammenities?: string[];
+   buildingInsurance?: string | null;
+   condoCorp?: string | null;
+   condoCorpNum?: string | null;
+   exposure?: string | null;
+   lockerNumber?: string;
+   locker?: string | null;
+   parkingType?: string | null;
+   pets?: string | null;
+   propertyMgr?: string | null;
+   stories?: string | null;
+   fees?: {
+      cableIncl?: YesNo | string | null;
+      heatIncl?: YesNo | string | null;
+      hydroIncl?: YesNo | string | null;
+      maintenance?: string | null;
+      parkingIncl?: YesNo | string | null;
+      taxesIncl?: YesNo | string | null;
+      waterIncl?: YesNo | string | null;
    };
-   lockerUnitNumber: string | null;
-   ensuiteLaundry: YesNo | string | null;
-   sharesPercentage: string | null;
-   lockerLevel: string | null;
-   unitNumber: string | null;
+   lockerUnitNumber?: string | null;
+   ensuiteLaundry?: YesNo | string | null;
+   sharesPercentage?: string | null;
+   lockerLevel?: string | null;
+   unitNumber?: string | null;
 }
 
 export interface OpenHouse {
-   date: string;
-   startTime: string;
-   endTime: string;
-   type: null | string;
-   status: null | string;
-   TZ: null | string
+   date?: string;
+   startTime?: string;
+   endTime?: string;
+   type?: null | string;
+   status?: null | string;
+   TZ?: null | string
 }
 
 export interface Details extends Record<string, unknown> {
-   numKitchens: string | null;
-   numParkingSpaces: string | null;
-   laundryLevel: string | null;
-   zoningDescription: Record<string, unknown>;
-   moreInformationLink: Record<string, unknown>;
-   certificationLevel: string | null;
-   den: YesNo | null;
-   yearBuilt: string | null;
-   alternateURLVideoLink: Record<string, unknown>;
-   exteriorConstruction1: string | null;
-   elevator: string | null;
-   exteriorConstruction2: string | null;
-   roofMaterial: Record<string, unknown>;
-   zoning: string | null;
-   basement1: string | null;
-   basement2: string | null;
-   sqft: string | null;
-   handicappedEquipped: string | null;
-   heating: string | null;
-   numRooms: string | null;
-   landscapeFeatures: Record<string, unknown>;
-   virtualTourUrl: string | null;
-   landSewer: Record<string, unknown>;
-   energyCertification: string | null;
-   numBathrooms: string | null;
-   greenPropertyInformationStatement: string | null;
-   liveStreamEventURL: Record<string, unknown>;
-   zoningType: Record<string, unknown>;
-   landAccessType: Record<string, unknown>;
-   businessSubType: Record<string, unknown>;
-   numKitchensPlus: string | null;
-   bathrooms: Record<string, Bathroom>;
-   swimmingPool: string | null;
-   constructionStyleSplitLevel: Record<string, unknown>;
-   leaseTerms: string | null;
-   numRoomsPlus: string | null;
-   flooringType: Record<string, unknown>;
-   farmType: Record<string, unknown>;
-   landDisposition: Record<string, unknown>;
-   viewType: Record<string, unknown>;
-   style: string | null;
-   loadingType: Record<string, unknown>;
-   numGarageSpaces: string | null;
-   parkCostMonthly: string | null;
-   airConditioning: string | null;
-   familyRoom: YesNo;
-   constructionStatus: Record<string, unknown>;
-   numBedrooms: string | null;
-   description: string | null;
-   extras: string | null;
-   livingAreaMeasurement: Record<string, unknown>;
-   patio: Record<string, unknown>;
-   amperage: Record<string, unknown>;
-   centralAirConditioning: string | null;
-   furnished: string | null;
-   foundationType: Record<string, unknown>;
-   sewer: string | null;
-   propertyType: string | null;
-   HOAFee: Record<string, unknown>;
-   commonElementsIncluded: string | null;
-   numDrivewaySpaces: Record<string, unknown>;
-   numBathroomsPlus: string | null;
-   ceilingType: Record<string, unknown>;
-   waterSource: string | null;
-   numBedroomsPlus: string | null;
-   garage: string | null;
-   centralVac: string | null;
-   sqftRange: Record<string, unknown>;
-   driveway: string | null;
-   numFireplaces: YesNo;
-   energuideRating: Record<string, unknown>;
-   fireProtection: Record<string, unknown>;
-   storageType: Record<string, unknown>;
-   analyticsClick: Record<string, unknown>;
-   businessType: Record<string, unknown>;
-   numBathroomsHalf: Record<string, unknown>;
+   numKitchens?: string | null;
+   numParkingSpaces?: string | null;
+   laundryLevel?: string | null;
+   zoningDescription?: Record<string, unknown>;
+   moreInformationLink?: Record<string, unknown>;
+   certificationLevel?: string | null;
+   den?: YesNo | null;
+   yearBuilt?: string | null;
+   alternateURLVideoLink?: Record<string, unknown>;
+   exteriorConstruction1?: string | null;
+   elevator?: string | null;
+   exteriorConstruction2?: string | null;
+   roofMaterial?: Record<string, unknown>;
+   zoning?: string | null;
+   basement1?: string | null;
+   basement2?: string | null;
+   sqft?: string | null;
+   handicappedEquipped?: string | null;
+   heating?: string | null;
+   numRooms?: string | null;
+   landscapeFeatures?: Record<string, unknown>;
+   virtualTourUrl?: string | null;
+   landSewer?: Record<string, unknown>;
+   energyCertification?: string | null;
+   numBathrooms?: string | null;
+   greenPropertyInformationStatement?: string | null;
+   liveStreamEventURL?: Record<string, unknown>;
+   zoningType?: Record<string, unknown>;
+   landAccessType?: Record<string, unknown>;
+   businessSubType?: Record<string, unknown>;
+   numKitchensPlus?: string | null;
+   bathrooms?: Record<string, Bathroom>;
+   swimmingPool?: string | null;
+   constructionStyleSplitLevel?: Record<string, unknown>;
+   leaseTerms?: string | null;
+   numRoomsPlus?: string | null;
+   flooringType?: Record<string, unknown>;
+   farmType?: Record<string, unknown>;
+   landDisposition?: Record<string, unknown>;
+   viewType?: Record<string, unknown>;
+   style?: string | null;
+   loadingType?: Record<string, unknown>;
+   numGarageSpaces?: string | null;
+   parkCostMonthly?: string | null;
+   airConditioning?: string | null;
+   familyRoom?: YesNo;
+   constructionStatus?: Record<string, unknown>;
+   numBedrooms?: string | null;
+   description?: string | null;
+   extras?: string | null;
+   livingAreaMeasurement?: Record<string, unknown>;
+   patio?: Record<string, unknown>;
+   amperage?: Record<string, unknown>;
+   centralAirConditioning?: string | null;
+   furnished?: string | null;
+   foundationType?: Record<string, unknown>;
+   sewer?: string | null;
+   propertyType?: string | null;
+   HOAFee?: Record<string, unknown>;
+   commonElementsIncluded?: string | null;
+   numDrivewaySpaces?: Record<string, unknown>;
+   numBathroomsPlus?: string | null;
+   ceilingType?: Record<string, unknown>;
+   waterSource?: string | null;
+   numBedroomsPlus?: string | null;
+   garage?: string | null;
+   centralVac?: string | null;
+   sqftRange?: Record<string, unknown>;
+   driveway?: string | null;
+   numFireplaces?: YesNo;
+   energuideRating?: Record<string, unknown>;
+   fireProtection?: Record<string, unknown>;
+   storageType?: Record<string, unknown>;
+   analyticsClick?: Record<string, unknown>;
+   businessType?: Record<string, unknown>;
+   numBathroomsHalf?: Record<string, unknown>;
 }
 
 export type ListingClass = "ResidentialProperty";
 
 export interface Address {
-   area: string;
-   city: string;
-   country: string | null;
-   district: string;
-   majorIntersection: string;
-   neighborhood: string;
-   streetDirection: string;
-   streetName: string;
-   streetNumber: string;
-   streetSuffix: string;
-   unitNumber: string;
-   zip: string;
-   state: string;
-   communityCode: string;
-   streetDirectionPrefix: Record<string, unknown>;
+   area?: string;
+   city?: string;
+   country?: string | null;
+   district?: string;
+   majorIntersection?: string;
+   neighborhood?: string;
+   streetDirection?: StreetDirection;
+   streetName?: string;
+   streetNumber?: string;
+   streetSuffix?: string;
+   unitNumber?: string;
+   zip?: string;
+   state?: string;
+   communityCode?: string;
+   streetDirectionPrefix?: Record<string, unknown>;
 }
 
+/**
+ * All fields of the Listing interface are optional.
+ * All the fields inside objects nested inside Listing object are optional too.
+ * 
+ * This is due to the fact that SearchRequest contains a feild called "feilds"
+ * that can and should be used to specify a subset of Listing fields which must be 
+ * returned by the endpoint.
+ * 
+ * Also it's worth noting that some fields maybe missing inside
+ * some MLS boards by default.
+ */
 export interface Listing extends Record<string, unknown> {
-   mlsNumber: string;
-   resource: string;
-   status: Status;
-   class: Class;
-   type: Type;
-   listPrice: string;
-   listDate: string; //TODO: can we type it to ISO format "2024-11-21T00:00:00.000Z" ?
-   lastStatus: LastStatus; // New
-   soldPrice: string; // 0.00
-   soldDate: string | null; //TODO: can we type it to ISO format "2024-11-21T00:00:00.000Z" ?
-   originalPrice: string | null;
-   assignment: string | null;
-   address: Address;
-   map: {
-      latitude: string;
-      longitude: string;
-      point: string;
+   mlsNumber?: string;
+   resource?: string;
+   status?: Status;
+   class?: Class;
+   type?: Type;
+   listPrice?: string;
+   listDate?: string; 
+   lastStatus?: LastStatus;
+   soldPrice?: string; // 0.00
+   soldDate?: string | null;
+   originalPrice?: string | null;
+   assignment?: string | null;
+   address?: Address;
+   map?: {
+      latitude?: string;
+      longitude?: string;
+      point?: string;
    };
-   permissions: {
-      displayAddressOnInternet: YesNo;
-      displayPublic: YesNo;
-      displayInternetEntireListing: YesNo;
+   permissions?: {
+      displayAddressOnInternet?: YesNo;
+      displayPublic?: YesNo;
+      displayInternetEntireListing?: YesNo;
    };
-   images: string[];
-   photoCount: number;
-   details: Details;
-   daysOnMarket: string;
-   occupancy: string | null;
-   updatedOn: string; //TODO: can we type it to ISO format "2024-11-21T00:00:00.000Z" ?
-   condominium: Condominium;
-   coopCompensation: string | null;
-   lot: {
-      acres: string | null; //V2: number
-      depth: string | null; //V2: number??
-      irregular: string | null;
-      legalDescription: string | null;
-      measurement: string | null;
-      width: string | null;
-      size: string | null;
+   images?: string[];
+   photoCount?: number;
+   details?: Details;
+   daysOnMarket?: string;
+   occupancy?: string | null;
+   updatedOn?: string;
+   condominium?: Condominium;
+   coopCompensation?: string | null;
+   lot?: {
+      acres?: string | null; //V2: number
+      depth?: string | null; //V2: number??
+      irregular?: string | null;
+      legalDescription?: string | null;
+      measurement?: string | null;
+      width?: string | null;
+      size?: string | null;
       source?: string | null;
       dimensionsSource?: string | null;
       dimensions?: string | null;
@@ -229,54 +239,54 @@ export interface Listing extends Record<string, unknown> {
       features?: string | null;
       taxLot?: string | null;
    };
-   nearby: {
-      ammenities: string[];
+   nearby?: {
+      ammenities?: string[];
    };
-   office: {
-      brokerageName: string;
+   office?: {
+      brokerageName?: string;
    };
-   openHouse: Record<string, OpenHouse>;
-   rooms: Record<string, Room>;
-   taxes: {
-      annualAmount: string | null; // V2: number
-      assessmentYear: string | null;
+   openHouse?: Record<string, OpenHouse>;
+   rooms?: Record<string, Room>;
+   taxes?: {
+      annualAmount?: string | null; // V2: number
+      assessmentYear?: string | null;
    };
-   timestamps: Timestamp;
-   agents: Array<{
+   timestamps?: Timestamp;
+   agents?: Array<{
       [key: string]: unknown;
-      agentId: string;
-      boardAgentId: string;
-      officeId: string;
-      updatedOn: string | null;
-      name: string;
-      board: string | null;
-      boardOfficeId: string | null;
-      position: string | null;
+      agentId?: string;
+      boardAgentId?: string;
+      officeId?: string;
+      updatedOn?: string | null;
+      name?: string;
+      board?: string | null;
+      boardOfficeId?: string | null;
+      position?: string | null;
       email?: string | null;
-      phones: string[];
-      social: string[];
-      website: string | null;
-      photo: {
-         small: string | null;
-         large: string | null;
-         updatedOn: string | null;
+      phones?: string[];
+      social?: string[];
+      website?: string | null;
+      photo?: {
+         small?: string | null;
+         large?: string | null;
+         updatedOn?: string | null;
       }
-      brokerage: {
-         name: string;
-         address: {
-            address1: string | null;
-            address2: string | null;
-            city: string | null;
-            state: string | null;
-            postal: string | null;
-            country: string | null;
+      brokerage?: {
+         name?: string;
+         address?: {
+            address1?: string | null;
+            address2?: string | null;
+            city?: string | null;
+            state?: string | null;
+            postal?: string | null;
+            country?: string | null;
          }
       }
    }>;
    duplicates?: string[];
-   boardId: number;
-   comparables: Partial<Listing>[];
-   history: Partial<Listing>[];
+   boardId?: number;
+   comparables?: Partial<Listing>[];
+   history?: Partial<Listing>[];
 }
 
 export type RollingPeriodName<Days extends `${number}` = "30" | "90" | "365"> =
@@ -566,6 +576,10 @@ export interface Map {
    longitude: string;
    point: string;
 }
+
+
+// TODO: in fact classes will have 3 class - as correspond to Class enum.
+// but we can limit the classes we request at the request level
 export interface LocationsResponse extends ApiResponse {
    boards: [
       {
