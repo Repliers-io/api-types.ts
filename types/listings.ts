@@ -202,12 +202,12 @@ export interface Listing extends Record<string, unknown> {
    status?: Status;
    class?: Class;
    type?: Type;
-   listPrice?: string;
+   listPrice?: string; // WHY String in V2 ? soldPrice, originalPrice is number in V2
    listDate?: string; 
    lastStatus?: LastStatus;
-   soldPrice?: string; // 0.00
+   soldPrice?: string | null; // 0.00
    soldDate?: string | null;
-   originalPrice?: string | null;
+   originalPrice?: string;
    assignment?: string | null;
    address?: Address;
    map?: Map;
@@ -225,7 +225,7 @@ export interface Listing extends Record<string, unknown> {
    condominium?: Condominium;
    coopCompensation?: string | null;
    lot?: {
-      acres?: string | null; //V2: number
+      acres?: string | null; //V2: number ??
       depth?: string | null; //V2: number??
       irregular?: string | null;
       legalDescription?: string | null;
