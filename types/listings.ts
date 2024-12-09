@@ -18,9 +18,9 @@ export interface Room {
    features?: string | null;
    features2?: string | null;
    features3?: string | null;
-   length?: string;
-   width?: string;
-   level?: string;
+   length?: string | null;
+   width?: string | null;
+   level?: string | null;
 }
 
 export interface Bathroom {
@@ -210,11 +210,7 @@ export interface Listing extends Record<string, unknown> {
    originalPrice?: string | null;
    assignment?: string | null;
    address?: Address;
-   map?: {
-      latitude?: string;
-      longitude?: string;
-      point?: string;
-   };
+   map?: Map;
    permissions?: {
       displayAddressOnInternet?: YesNo;
       displayPublic?: YesNo;
@@ -225,7 +221,7 @@ export interface Listing extends Record<string, unknown> {
    details?: Details;
    daysOnMarket?: string;
    occupancy?: string | null;
-   updatedOn?: string;
+   updatedOn?: string | null;
    condominium?: Condominium;
    coopCompensation?: string | null;
    lot?: {
@@ -258,11 +254,11 @@ export interface Listing extends Record<string, unknown> {
    timestamps?: Timestamp;
    agents?: Array<{
       [key: string]: unknown;
-      agentId?: string;
+      agentId?: string | null;
       boardAgentId?: string;
       officeId?: string;
       updatedOn?: string | null;
-      name?: string;
+      name?: string | null;
       board?: string | null;
       boardOfficeId?: string | null;
       position?: string | null;
@@ -571,7 +567,7 @@ export interface Area {
    name: string;
    cities: Array<City>;
 }
-export interface ClassWithAreas<Name> {
+export interface ClassWithAreas<Name extends Class> {
    name: Name;
    areas: Array<Area>;
 }
@@ -581,16 +577,17 @@ export interface Map {
    point: string;
 }
 
-
-// TODO: in fact classes will have 3 class - as correspond to Class enum.
-// but we can limit the classes we request at the request level
 export interface LocationsResponse extends ApiResponse {
    boards: [
       {
          boardId: number;
          name: string;
          updatedOn: string;
-         classes: [ClassWithAreas<"condo">, ClassWithAreas<"residential">];
+         classes: [
+            ClassWithAreas<Class.condo>, 
+            ClassWithAreas<Class.residential>, 
+            ClassWithAreas<Class.commercial> 
+         ];
       },
    ];
 }
