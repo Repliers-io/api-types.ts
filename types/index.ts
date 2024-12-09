@@ -5,6 +5,8 @@ export * as Listings from './listings.js';
 export * as Messages from './messages.js';
 export * as Searches from './searches.js';
 
+export type Extend<T, R> = Omit<T, keyof R> & R;
+
 export interface ApiRequest extends Record<string, unknown> {}
 export interface ApiResponse extends Record<string, unknown> {}
 export interface ApiRequestBody extends Record<string, unknown> {}
@@ -125,8 +127,15 @@ export enum SortBy {
    yearBuiltDesc = "yearBuiltDesc",
    yearBuiltAsc = "yearBuiltAsc",
    random = "random",
+   statusAscListDateAsc = "statusAscListDateAsc",
+   statusAscListDateDesc = "statusAscListDateDesc",
+   statusAscListPriceAsc = "statusAscListPriceAsc",
+   statusAscListPriceDesc = "statusAscListPriceDesc",
+   repliersUpdatedOnAsc = "repliersUpdatedOnAsc",
+   repliersUpdatedOnDesc = "repliersUpdatedOnDesc",
 }
 
+// TODO: how do we add grp-{x}-days here??
 export enum Statistics {
    "avg-daysOnMarket" = "avg-daysOnMarket",
    "sum-daysOnMarket" = "sum-daysOnMarket",

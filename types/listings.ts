@@ -14,228 +14,279 @@ import {
 } from "./index.js";
 
 export interface Room {
-   [key: string]: unknown;
-   features: string;
-   level: string;
-   length: string;
-   width: string;
-   description: string;
+   description?: string;
+   features?: string | null;
+   features2?: string | null;
+   features3?: string | null;
+   length?: string | null;
+   width?: string | null;
+   level?: string | null;
+}
+
+export interface Bathroom {
+   pieces?: string;
+   level?: string;
+   count?: string;
 }
 
 export interface Timestamp {
-   repliersUpdatedOn: string;
-   terminatedDate: string | null;
-   conditionalExpiryDate: string | null;
-   listingUpdated: string;
-   extensionEntryDate: string | null;
-   unavailableDate: string | null;
-   expiryDate: string;
-   listingEntryDate: string;
-   closedDate: string | null;
-   possessionDate: string;
-   idxUpdated: string | null;
-   photosUpdated: string;
-   suspendedDate: string | null;
+   idxUpdated?: string | null;
+   listingUpdated?: string | null;
+   photosUpdated?: string | null;
+   conditionalExpiryDate?: string | null;
+   terminatedDate?: string | null;
+   suspendedDate?: string | null;
+   listingEntryDate?: string | null;
+   closedDate?: string | null;
+   unavailableDate?: string | null;
+   expiryDate?: string | null;
+   extensionEntryDate?: string | null;
+   possessionDate?: string | null;
+   repliersUpdatedOn?: string;
 }
 
 export interface Condominium {
-   pets: Record<string, unknown>;
-   condoCorpNum: Record<string, unknown>;
-   parkingType: Record<string, unknown>;
-   fees: {
-      cableIncl: string;
-      waterIncl: string;
-      heatIncl: string;
-      taxesIncl: Record<string, unknown>;
-      parkingIncl: string;
-      maintenance: Record<string, unknown>;
-      hydroIncl: string;
+   ammenities?: string[];
+   buildingInsurance?: string | null;
+   condoCorp?: string | null;
+   condoCorpNum?: string | null;
+   exposure?: string | null;
+   lockerNumber?: string;
+   locker?: string | null;
+   parkingType?: string | null;
+   pets?: string | null;
+   propertyMgr?: string | null;
+   stories?: string | null;
+   fees?: {
+      cableIncl?: YesNo | string | null;
+      heatIncl?: YesNo | string | null;
+      hydroIncl?: YesNo | string | null;
+      maintenance?: string | null;
+      parkingIncl?: YesNo | string | null;
+      taxesIncl?: YesNo | string | null;
+      waterIncl?: YesNo | string | null;
    };
-   stories: Record<string, unknown>;
-   propertyMgr: Record<string, unknown>;
-   lockerLevel: Record<string, unknown>;
-   unitNumber: Record<string, unknown>;
-   locker: Record<string, unknown>;
-   condoCorp: Record<string, unknown>;
-   sharesPercentage: Record<string, unknown>;
-   ensuiteLaundry: Record<string, unknown>;
-   exposure: Record<string, unknown>;
-   lockerNumber: string;
-   lockerUnitNumber: Record<string, unknown>;
-   ammenities: Record<string, unknown>[];
+   lockerUnitNumber?: string | null;
+   ensuiteLaundry?: YesNo | string | null;
+   sharesPercentage?: string | null;
+   lockerLevel?: string | null;
+   unitNumber?: string | null;
 }
 
 export interface OpenHouse {
-   date: string;
-   startTime: string;
-   endTime: string;
-   type: null | string;
-   status: null | string;
+   date?: string;
+   startTime?: string;
+   endTime?: string;
+   type?: string | null;
+   status?: string | null;
+   TZ?: string | null;
 }
 
 export interface Details extends Record<string, unknown> {
-   numKitchens: string;
-   numParkingSpaces: string;
-   laundryLevel: string;
-   zoningDescription: Record<string, unknown>;
-   moreInformationLink: Record<string, unknown>;
-   certificationLevel: string;
-   den: YesNo;
-   yearBuilt: string;
-   alternateURLVideoLink: Record<string, unknown>;
-   exteriorConstruction1: string;
-   elevator: string;
-   exteriorConstruction2: string;
-   roofMaterial: Record<string, unknown>;
-   zoning: string;
-   basement1: string;
-   basement2: string;
-   sqft: string;
-   handicappedEquipped: string;
-   heating: string;
-   numRooms: string;
-   landscapeFeatures: Record<string, unknown>;
-   virtualTourUrl: string;
-   landSewer: Record<string, unknown>;
-   energyCertification: string;
-   numBathrooms: string;
-   greenPropertyInformationStatement: string;
-   liveStreamEventURL: Record<string, unknown>;
-   zoningType: Record<string, unknown>;
-   landAccessType: Record<string, unknown>;
-   businessSubType: Record<string, unknown>;
-   numKitchensPlus: string;
-   bathrooms: Record<
-      string,
-      {
-         pieces: string;
-         level: string;
-         count: string;
-      }
-   >;
-   swimmingPool: string;
-   constructionStyleSplitLevel: Record<string, unknown>;
-   leaseTerms: string;
-   numRoomsPlus: string;
-   flooringType: Record<string, unknown>;
-   farmType: Record<string, unknown>;
-   landDisposition: Record<string, unknown>;
-   viewType: Record<string, unknown>;
-   style: string;
-   loadingType: Record<string, unknown>;
-   numGarageSpaces: string;
-   parkCostMonthly: string;
-   airConditioning: string;
-   familyRoom: YesNo;
-   constructionStatus: Record<string, unknown>;
-   numBedrooms: string;
-   description: string;
-   extras: string;
-   livingAreaMeasurement: Record<string, unknown>;
-   patio: Record<string, unknown>;
-   amperage: Record<string, unknown>;
-   centralAirConditioning: string;
-   furnished: string;
-   foundationType: Record<string, unknown>;
-   sewer: string;
-   propertyType: string;
-   HOAFee: Record<string, unknown>;
-   commonElementsIncluded: string;
-   numDrivewaySpaces: Record<string, unknown>;
-   numBathroomsPlus: string | null;
-   ceilingType: Record<string, unknown>;
-   waterSource: string;
-   numBedroomsPlus: string;
-   garage: string;
-   centralVac: string;
-   sqftRange: Record<string, unknown>;
-   driveway: string;
-   numFireplaces: YesNo;
-   energuideRating: Record<string, unknown>;
-   fireProtection: Record<string, unknown>;
-   storageType: Record<string, unknown>;
-   analyticsClick: Record<string, unknown>;
-   businessType: Record<string, unknown>;
-   numBathroomsHalf: Record<string, unknown>;
+   airConditioning?: string | null;
+   basement1?: string | null;
+   basement2?: string | null;
+   centralVac?: string | null;
+   den?: YesNo | null;
+   description?: string | null;
+   elevator?: string | null;
+   exteriorConstruction1?: string | null;
+   exteriorConstruction2?: string | null;
+   extras?: string | null;
+   furnished?: string | null;
+   garage?: string | null;
+   heating?: string | null;
+   numBathrooms?: string | null;
+   numBathroomsPlus?: string | null;
+   numBedrooms?: string | null;
+   numBedroomsPlus?: string | null;
+   numFireplaces?: YesNo | string | null;
+   numGarageSpaces?: string | null;
+   numParkingSpaces?: string | null;
+   numRooms?: string | null;
+   numRoomsPlus?: string | null;
+   patio?: string | null;
+   propertyType?: string | null;
+   sqft?: string | null;
+   style?: string | null;
+   swimmingPool?: string | null;
+   virtualTourUrl?: string | null;
+   yearBuilt?: string | null;
+   landAccessType?: string | null;
+   landSewer?: string | null;
+   viewType?: string | null;
+   zoningDescription?: string | null;
+   analyticsClick?: string | null;
+   moreInformationLink?: string | null;
+   alternateURLVideoLink?: string | null;
+   flooringType?: string | null;
+   foundationType?: string | null;
+   landscapeFeatures?: string | null;
+   fireProtection?: string | null;
+   roofMaterial?: string | null;
+   farmType?: string | null;
+   zoningType?: string | null;
+   businessType?: string | null;
+   businessSubType?: string | null;
+   landDisposition?: string | null;
+   storageType?: string | null;
+   constructionStyleSplitLevel?: string | null;
+   constructionStatus?: string | null;
+   loadingType?: string | null;
+   ceilingType?: string | null;
+   liveStreamEventURL?: string | null;
+   energuideRating?: string | null;
+   amperage?: string | null;
+   sewer?: string | null;
+   familyRoom?: YesNo | null;
+   zoning?: string | null;
+   driveway?: string | null;
+   leaseTerms?: string | null;
+   centralAirConditioning?: string | null;
+   certificationLevel?: string | null;
+   energyCertification?: string | null;
+   parkCostMonthly?: string | null;
+   commonElementsIncluded?: string | null;
+   greenPropertyInformationStatement?: string | null;
+   handicappedEquipped?: string | null;
+   laundryLevel?: string | null;
+   balcony?: string | null;
+   numKitchens?: string | null;
+   numKitchensPlus?: string | null;
+   sqftRange?: string | null;
+   numDrivewaySpaces?: string | null;
+   HOAFee?: string | null;
+   HOAFee2?: string | null;
+   HOAFee3?: string | null;
+   waterSource?: string | null;
+   livingAreaMeasurement?: string | null;
+   waterfront?: string | null;
+   bathrooms?: Record<string, Bathroom>;
+   numBathroomsHalf?: string | null;
 }
 
 export type ListingClass = "ResidentialProperty";
 
 export interface Address {
-   area: string;
-   zip: string;
-   country: string | null;
-   city: string;
-   streetNumber: string;
-   unitNumber: string;
-   streetDirection: string;
-   streetName: string;
-   streetDirectionPrefix: Record<string, unknown>;
-   district: string;
-   streetSuffix: string;
-   neighborhood: string;
-   state: string;
-   majorIntersection: string;
-   communityCode: string;
+   area?: string | null;
+   city?: string | null;
+   country?: string | null;
+   district?: string | null;
+   majorIntersection?: string | null;
+   neighborhood?: string | null;
+   streetDirection?: StreetDirection | null;
+   streetName?: string | null;
+   streetNumber?: string | null;
+   streetSuffix?: string | null;
+   unitNumber?: string | null;
+   zip?: string | null;
+   state?: string | null;
+   communityCode?: string | null;
+   streetDirectionPrefix?: string | null;
 }
 
+/**
+ * All fields of the Listing interface are optional.
+ * All the fields inside objects nested inside Listing object are optional too.
+ * 
+ * This is due to the fact that SearchRequest contains a feild called "feilds"
+ * that can and should be used to specify a subset of Listing fields which must be 
+ * returned by the endpoint.
+ * 
+ * Also it's worth noting that some fields maybe missing inside
+ * some MLS boards by default.
+ */
 export interface Listing extends Record<string, unknown> {
-   listDate: string;
-   rooms: Record<string, Room>;
-   timestamps: Record<string, Timestamp>;
-   condominium: Record<string, Condominium>;
-   taxes: {
-      annualAmount: number;
-      assessmentYear: number;
+   mlsNumber?: string;
+   resource?: string;
+   status?: Status;
+   class?: Class;
+   type?: Type;
+   listPrice?: string;
+   listDate?: string; 
+   lastStatus?: LastStatus;
+   soldPrice?: string; // 0.00
+   soldDate?: string | null;
+   originalPrice?: string | null;
+   assignment?: string | null;
+   address?: Address;
+   map?: Map;
+   permissions?: {
+      displayAddressOnInternet?: YesNo;
+      displayPublic?: YesNo;
+      displayInternetEntireListing?: YesNo;
    };
-   office: {
-      brokerageName: string;
+   images?: string[];
+   photoCount?: number;
+   details?: Details;
+   daysOnMarket?: string;
+   occupancy?: string | null;
+   updatedOn?: string | null;
+   condominium?: Condominium;
+   coopCompensation?: string | null;
+   lot?: {
+      acres?: string | null; //V2: number
+      depth?: string | null; //V2: number??
+      irregular?: string | null;
+      legalDescription?: string | null;
+      measurement?: string | null;
+      width?: string | null;
+      size?: string | null;
+      source?: string | null;
+      dimensionsSource?: string | null;
+      dimensions?: string | null;
+      squareFeet?: string | null;
+      features?: string | null;
+      taxLot?: string | null;
    };
-   images: string[];
-   type: Type;
-   nearby: {
-      ammenities: string[];
+   nearby?: {
+      ammenities?: string[];
    };
-   photoCount: number;
-   lot: {
-      depth: string;
-      size: Record<string, unknown>;
-      width: string;
-      irregular: string;
-      acres: string;
-      legalDescription: string;
-      measurement: string;
+   office?: {
+      brokerageName?: string;
    };
-   mlsNumber: string;
-   openHouse: Array<Record<string, OpenHouse>>;
-   permissions: {
-      displayAddressOnInternet: YesNo;
-      displayPublic: YesNo;
-      displayInternetEntireListing: YesNo;
+   openHouse?: Record<string, OpenHouse>;
+   rooms?: Record<string, Room>;
+   taxes?: {
+      annualAmount?: string | null; // V2: number
+      assessmentYear?: string | null;
    };
-   soldPrice: string; // 0.00
-   details: Details;
-   class: Class;
-   map: {
-      latitude: string;
-      point: string;
-      longitude: string;
-   };
-   address: Address;
-   resource: string;
-   updatedOn: string;
-   daysOnMarket: number;
-   agents: Array<{
+   timestamps?: Timestamp;
+   agents?: Array<{
       [key: string]: unknown;
-      agentId: number;
+      agentId?: string | null;
+      boardAgentId?: string;
+      officeId?: string;
+      updatedOn?: string | null;
+      name?: string | null;
+      board?: string | null;
+      boardOfficeId?: string | null;
+      position?: string | null;
+      email?: string | null;
+      phones?: string[];
+      social?: string[];
+      website?: string | null;
+      photo?: {
+         small?: string | null;
+         large?: string | null;
+         updatedOn?: string | null;
+      }
+      brokerage?: {
+         name?: string;
+         address?: {
+            address1?: string | null;
+            address2?: string | null;
+            city?: string | null;
+            state?: string | null;
+            postal?: string | null;
+            country?: string | null;
+         }
+      }
    }>;
-   coopCompensation: string | null;
-   listPrice: string;
-   lastStatus: LastStatus; // New
-   status: Status;
-   boardId: number;
-   comparables: Partial<Listing>[];
-   history: Partial<Listing>[];
+   duplicates?: string[];
+   boardId?: number;
+   comparables?: Partial<Listing>[];
+   history?: Partial<Listing>[];
 }
 
 export type RollingPeriodName<Days extends `${number}` = "30" | "90" | "365"> =
@@ -280,6 +331,20 @@ export enum StreetDirection {
    Empty = "",
 }
 
+export enum CoverImage {
+   kitchen = "kitchen",
+   "powder room" = "powder room",
+   ensuite = "ensuite",
+   "family room" = "family room",
+   "exterior front" = "exterior front",
+   backyard = "backyard",
+   staircase = "staircase",
+   "primary bedroom" = "primary bedroom",
+   "laundry room" = "laundry room",
+   office = "office",
+   garage = "garage",
+}
+
 export interface SearchRequest extends ApiRequest {
    agent?: string[];
    aggregates?: Aggregates[];
@@ -299,7 +364,7 @@ export interface SearchRequest extends ApiRequest {
    clusterLimit?: number;
    clusterPrecision?: number;
    clusterStatistics?: boolean;
-   coverImage?: string;
+   coverImage?: CoverImage;
    den?: string;
    displayAddressOnInternet?: YesNo;
    displayInternetEntireListing?: YesNo;
@@ -321,24 +386,35 @@ export interface SearchRequest extends ApiRequest {
    map?: [number, number][][];
    mapOperator?: Operator;
    maxBaths?: number;
+   /** @deprecated use maxBedrooms field instead */
    maxBeds?: number;
+   maxBedrooms?: number;
+   /** @deprecated use maxBedroomsPlus field instead */
    maxBedsPlus?: number;
+   maxBedroomsPlus?: number;
+   maxBedroomsTotal?: number;
    maxKitchens?: number;
-   maxListDate?: string;
+   maxListDate?: DateFormat;
    maxMaintenanceFee?: number;
    maxOpenHouseDate?: DateFormat;
    maxPrice?: number;
    maxRepliersUpdatedOn?: DateFormat;
    maxSoldDate?: DateFormat;
    maxSoldPrice?: number;
+   maxStreetNumber?: number; 
    maxSqft?: number;
    maxTaxes?: number;
    maxUnavailableDate?: DateFormat;
    maxUpdatedOn?: DateFormat;
    maxYearBuilt?: number;
    minBaths?: number;
+   /** @deprecated use minBedrooms field instead */
    minBeds?: number;
+   minBedrooms?: number;
+   /** @deprecated use minBedroomsPlus field instead */
    minBedsPlus?: number;
+   minBedroomsPlus?: number;
+   minBedroomsTotal?: number;
    minGarageSpaces?: number;
    minKitchens?: number;
    minListDate?: DateFormat;
@@ -349,6 +425,7 @@ export interface SearchRequest extends ApiRequest {
    minSoldDate?: DateFormat;
    minSoldPrice?: string;
    minSqft?: number;
+   minStreetNumber?: number;
    minUnavailableDate?: DateFormat;
    minUpdatedOn?: DateFormat;
    minYearBuilt?: DateFormat;
@@ -357,29 +434,29 @@ export interface SearchRequest extends ApiRequest {
    officeId?: string;
    operator?: Operator;
    pageNum?: number;
-   propertyType?: string;
+   propertyType?: string[];
    radius?: number;
    resultsPerPage?: number;
    search?: string;
    searchFields?: string;
    sortBy?: SortBy;
    sqft?: string[];
-   // Actually it's coma-separated string of Statistics enum values, don't know how to type it
+   /** it's coma-separated string of Statistics enum values but we cannot type it properly in TS now */
    statistics?: string;
    status?: Status[];
    streetDirection?: StreetDirection[];
    streetName?: string;
    streetNumber?: string;
+   streetSuffix?: string;
    style?: string[];
    swimmingPool?: string[];
    type?: Type[];
-   unitNumber?: string;
+   unitNumber?: string[];
    updatedOn?: DateFormat;
    waterSource?: string[];
    repliersUpdatedOn?: string;
    sewer?: string[];
    state?: string;
-   streetSuffix?: string;
    waterfront?: YesNo;
    yearBuilt?: string[];
    zip?: string;
@@ -490,7 +567,7 @@ export interface Area {
    name: string;
    cities: Array<City>;
 }
-export interface ClassWithAreas<Name> {
+export interface ClassWithAreas<Name extends Class> {
    name: Name;
    areas: Array<Area>;
 }
@@ -499,13 +576,18 @@ export interface Map {
    longitude: string;
    point: string;
 }
+
 export interface LocationsResponse extends ApiResponse {
    boards: [
       {
          boardId: number;
          name: string;
          updatedOn: string;
-         classes: [ClassWithAreas<"condo">, ClassWithAreas<"residential">];
+         classes: [
+            ClassWithAreas<Class.condo>, 
+            ClassWithAreas<Class.residential>, 
+            ClassWithAreas<Class.commercial> 
+         ];
       },
    ];
 }
