@@ -30,18 +30,38 @@ export interface Bathroom {
 }
 
 export interface Timestamp {
+   /** timestamp when the listing was last updated inside IDX feed  */
    idxUpdated?: string | null;
+
+   /** timestamp when the listing was last updated inside MLS  */
    listingUpdated?: string | null;
+
+   /** timestamp when listing photos were last updated inside MLS  */
    photosUpdated?: string | null;
+
    conditionalExpiryDate?: string | null;
+
+   /** timestamp when the listing was Terminated inside MLS  */
    terminatedDate?: string | null;
+
+   /** timestamp when the listing was Suspended inside MLS  */
    suspendedDate?: string | null;
+
+   /** timestamp when the listing was initially created inside MLS  */
    listingEntryDate?: string | null;
+
    closedDate?: string | null;
+
+   /** timestamp when the listing became unavailable inside MLS  */
    unavailableDate?: string | null;
+
+   /** timestamp when the listing will expired inside MLS  */
    expiryDate?: string | null;
+
    extensionEntryDate?: string | null;
    possessionDate?: string | null;
+   
+   /** timestamp when the listing was last updated inside Repliers  */
    repliersUpdatedOn?: string;
 }
 
