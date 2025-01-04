@@ -11,167 +11,177 @@ export interface ApiRequest extends Record<string, unknown> {}
 export interface ApiResponse extends Record<string, unknown> {}
 export interface ApiRequestBody extends Record<string, unknown> {}
 
-export enum Aggregates {
-   class = "class",
-   status = "status",
-   lastStatus = "lastStatus",
-   type = "type",
-   listPrice = "listPrice",
-   map = "map",
-   "address.area" = "address.area",
-   "address.city" = "address.city",
-   "address.neighborhood" = "address.neighborhood",
-   "address.district" = "address.district",
-   "address.streetName" = "address.streetName",
-   "address.majorIntersection" = "address.majorIntersection",
-   "address.zip" = "address.zip",
-   "address.state" = "address.state",
-   "address.communityCode" = "address.communityCode",
-   "address.streetDirection" = "address.streetDirection",
-   "permissions.displayPublic" = "permissions.displayPublic",
-   "permissions.displayInternetEntireListing" = "permissions.displayInternetEntireListing",
-   "permissions.displayAddressOnInternet" = "permissions.displayAddressOnInternet",
-   "details.propertyType" = "details.propertyType",
-   "details.style" = "details.style",
-   "detail.numBedrooms" = "detail.numBedrooms",
-   "details.numBathrooms" = "details.numBathrooms",
-   "details.businessType" = "details.businessType",
-   "details.businessSubType" = "details.businessSubType",
-   "details.basement1" = "details.basement1",
-   "details.basement2" = "details.basement2",
-   "details.garage" = "details.garage",
-   "details.den" = "details.den",
-   "details.sewer" = "details.sewer",
-   "details.waterSource" = "details.waterSource",
-   "details.heating" = "details.heating",
-   "details.swimmingPool" = "details.swimmingPool",
-   "details.yearBuilt" = "details.yearBuilt",
-   "details.exteriorConstruction" = "details.exteriorConstruction",
-   "details.exteriorConstruction2" = "details.exteriorConstruction2",
-   "details.sqft" = "details.sqft",
-   "details.balcony" = "details.balcony",
-   "details.driveway" = "details.driveway",
-   "condominium.locker" = "condominium.locker",
-   "condominium.exposure" = "condominium.exposure",
-   "condominium.ammenities" = "condominium.ammenities",
-   "condominium.pets" = "condominium.pets",
-   "condominium.parkingType" = "condominium.parkingType",
-   "condominium.stories" = "condominium.stories",
-   "condominium.propertyMgr" = "condominium.propertyMgr",
-   "condominium.condoCorp" = "condominium.condoCorp",
-   "condominium.ensuiteLaundry" = "condominium.ensuiteLaundry",
-   "nearby.ammenities" = "nearby.ammenities",
-   "office.brokerageName" = "office.brokerageName",
-   "photoCount" = "photoCount",
-}
+export const AggregatesValues = [
+   "class",
+   "status",
+   "lastStatus",
+   "type",
+   "listPrice",
+   "map",
+   "address.area",
+   "address.city",
+   "address.neighborhood",
+   "address.district",
+   "address.streetName",
+   "address.majorIntersection",
+   "address.zip",
+   "address.state",
+   "address.communityCode",
+   "address.streetDirection",
+   "permissions.displayPublic",
+   "permissions.displayInternetEntireListing",
+   "permissions.displayAddressOnInternet",
+   "details.propertyType",
+   "details.style",
+   "detail.numBedrooms",
+   "details.numBathrooms",
+   "details.businessType",
+   "details.businessSubType",
+   "details.basement1",
+   "details.basement2",
+   "details.garage",
+   "details.den",
+   "details.sewer",
+   "details.waterSource",
+   "details.heating",
+   "details.swimmingPool",
+   "details.yearBuilt",
+   "details.exteriorConstruction",
+   "details.exteriorConstruction2",
+   "details.sqft",
+   "details.balcony",
+   "details.driveway",
+   "condominium.locker",
+   "condominium.exposure",
+   "condominium.ammenities",
+   "condominium.pets",
+   "condominium.parkingType",
+   "condominium.stories",
+   "condominium.propertyMgr",
+   "condominium.condoCorp",
+   "condominium.ensuiteLaundry",
+   "nearby.ammenities",
+   "office.brokerageName",
+   "photoCount"
+] as const;
+export type Aggregates = typeof AggregatesValues[number];
 
 export type DateFormat = `${number}-${number}-${number}`; // YYYY-MM-DD
 
-export enum YesNo {
-   Y = "Y",
-   N = "N",
-}
+export const YesNoValues = [
+   "Y", 
+   "N"
+] as const;
+export type YesNo = typeof YesNoValues[number];
 
-export enum Class {
-   condo = "condo",
-   residential = "residential",
-   commercial = "commercial"
-}
+export const ClassValues = [
+   "condo", 
+   "residential", 
+   "commercial"
+] as const;
+export type Class = typeof ClassValues[number];
 
-export enum LastStatus {
-   Sus = "Sus",
-   Exp = "Exp",
-   Sld = "Sld",
-   Ter = "Ter",
-   Dft = "Dft",
-   Lsd = "Lsd",
-   Sc = "Sc",
-   Sce = "Sce",
-   Lc = "Lc",
-   Pc = "Pc",
-   Ext = "Ext",
-   New = "New",
-}
+export const LastStatusValues = [
+   "Sus",
+   "Exp",
+   "Sld",
+   "Ter",
+   "Dft",
+   "Lsd",
+   "Sc",
+   "Sce",
+   "Lc",
+   "Pc",
+   "Ext",
+   "New"
+] as const;
+export type LastStatus = typeof LastStatusValues[number];
 
-export enum Operator {
-   AND = "AND",
-   OR = "OR",
-}
+export const OperatorValues = [
+   "AND",
+   "OR"
+] as const;
+export type Operator = typeof OperatorValues[number];
 
-export enum SimilarSortBy {
-   "updatedOnDesc" = "updatedOnDesc",
-   "updatedOnAsc" = "updatedOnAsc",
-   "createdOnAsc" = "createdOnAsc",
-   "createdOnDesc" = "createdOnDesc",
-}
+export const SimilarSortByValues = [
+   "updatedOnDesc",
+   "updatedOnAsc",
+   "createdOnAsc",
+   "createdOnDesc"
+] as const;
+export type SimilarSortBy = typeof SimilarSortByValues[number];
 
-export enum SortBy {
-   createdOnDesc = "createdOnDesc",
-   updatedOnDesc = "updatedOnDesc",
-   createdOnAsc = "createdOnAsc",
-   distanceAsc = "distanceAsc",
-   distanceDesc = "distanceDesc",
-   updatedOnAsc = "updatedOnAsc",
-   soldDateAsc = "soldDateAsc",
-   soldDateDesc = "soldDateDesc",
-   soldPriceAsc = "soldPriceAsc",
-   soldPriceDesc = "soldPriceDesc",
-   sqftAsc = "sqftAsc",
-   sqftDesc = "sqftDesc",
-   listPriceAsc = "listPriceAsc",
-   listPriceDesc = "listPriceDesc",
-   bedsAsc = "bedsAsc",
-   bedsDesc = "bedsDesc",
-   bathsDesc = "bathsDesc",
-   bathsAsc = "bathsAsc",
-   yearBuiltDesc = "yearBuiltDesc",
-   yearBuiltAsc = "yearBuiltAsc",
-   random = "random",
-   statusAscListDateAsc = "statusAscListDateAsc",
-   statusAscListDateDesc = "statusAscListDateDesc",
-   statusAscListPriceAsc = "statusAscListPriceAsc",
-   statusAscListPriceDesc = "statusAscListPriceDesc",
-   repliersUpdatedOnAsc = "repliersUpdatedOnAsc",
-   repliersUpdatedOnDesc = "repliersUpdatedOnDesc",
-}
+export const SortByValues = [
+   "createdOnDesc",
+   "updatedOnDesc",
+   "createdOnAsc",
+   "distanceAsc",
+   "distanceDesc",
+   "updatedOnAsc",
+   "soldDateAsc",
+   "soldDateDesc",
+   "soldPriceAsc",
+   "soldPriceDesc",
+   "sqftAsc",
+   "sqftDesc",
+   "listPriceAsc",
+   "listPriceDesc",
+   "bedsAsc",
+   "bedsDesc",
+   "bathsDesc",
+   "bathsAsc",
+   "yearBuiltDesc",
+   "yearBuiltAsc",
+   "random",
+   "statusAscListDateAsc",
+   "statusAscListDateDesc",
+   "statusAscListPriceAsc",
+   "statusAscListPriceDesc",
+   "repliersUpdatedOnAsc",
+   "repliersUpdatedOnDesc"
+] as const;
+export type SortBy = typeof SortByValues[number];
 
 // TODO: how do we add grp-{x}-days here??
-export enum Statistics {
-   "avg-daysOnMarket" = "avg-daysOnMarket",
-   "sum-daysOnMarket" = "sum-daysOnMarket",
-   "min-daysOnMarket" = "min-daysOnMarket",
-   "max-daysOnMarket" = "max-daysOnMarket",
-   "avg-listPrice" = "avg-listPrice",
-   "sum-listPrice" = "sum-listPrice",
-   "min-listPrice" = "min-listPrice",
-   "max-listPrice" = "max-listPrice",
-   "avg-soldPrice" = "avg-soldPrice",
-   "sum-soldPrice" = "sum-soldPrice",
-   "min-soldPrice" = "min-soldPrice",
-   "max-soldPrice" = "max-soldPrice",
-   "cnt-new" = "cnt-new",
-   "cnt-closed" = "cnt-closed",
-   "cnt-available" = "cnt-available",
-   "med-listPrice" = "med-listPrice",
-   "med-soldPrice" = "med-soldPrice",
-   "med-daysOnMarket" = "med-daysOnMarket",
-   "sd-listPrice" = "sd-listPrice",
-   "sd-soldPrice" = "sd-soldPrice",
-   "sd-daysOnMarket" = "sd-daysOnMarket",
-   "avg-priceSqft" = "avg-priceSqft",
-   "grp-mth" = "grp-mth",
-   "grp-yr" = "grp-yr",
-   "grp-day" = "grp-day",
-   "avg-tax" = "avg-tax",
-   "med-tax" = "med-tax",
-}
+export const StatisticsValues = [
+   "avg-daysOnMarket",
+   "sum-daysOnMarket",
+   "min-daysOnMarket",
+   "max-daysOnMarket",
+   "avg-listPrice",
+   "sum-listPrice",
+   "min-listPrice",
+   "max-listPrice",
+   "avg-soldPrice",
+   "sum-soldPrice",
+   "min-soldPrice",
+   "max-soldPrice",
+   "cnt-new",
+   "cnt-closed",
+   "cnt-available",
+   "med-listPrice",
+   "med-soldPrice",
+   "med-daysOnMarket",
+   "sd-listPrice",
+   "sd-soldPrice",
+   "sd-daysOnMarket",
+   "avg-priceSqft",
+   "grp-mth",
+   "grp-yr",
+   "grp-day",
+   "avg-tax",
+   "med-tax"
+] as const;
+export type Statistics = typeof StatisticsValues[number];
 
-export enum Status {
-   A = "A",
-   U = "U",
-}
+export const StatusValues = [
+   "A",
+   "U"
+] as const;
+export type Status = typeof StatusValues[number];
 
-export enum Type {
-   Sale = "sale",
-   Lease = "lease",
-}
+export const TypeValues = [
+   "sale",
+   "lease"
+] as const;
+export type Type = typeof TypeValues[number];

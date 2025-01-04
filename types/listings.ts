@@ -343,27 +343,29 @@ export interface ImageSearchUrl extends ImageSearchItemBase {
 
 export type ImageSearchItem = ImageSearchValue | ImageSearchUrl;
 
-export enum StreetDirection {
-   N = "n",
-   E = "e",
-   W = "w",
-   S = "s",
-   Empty = "",
-}
+export const StreetDirectionValues = [
+   "n",
+   "e",
+   "w",
+   "s",
+   ""
+] as const;
+export type StreetDirection = typeof StreetDirectionValues[number];
 
-export enum CoverImage {
-   kitchen = "kitchen",
-   "powder room" = "powder room",
-   ensuite = "ensuite",
-   "family room" = "family room",
-   "exterior front" = "exterior front",
-   backyard = "backyard",
-   staircase = "staircase",
-   "primary bedroom" = "primary bedroom",
-   "laundry room" = "laundry room",
-   office = "office",
-   garage = "garage",
-}
+export const CoverImageValues = [
+   "kitchen",
+   "powder room",
+   "ensuite",
+   "family room",
+   "exterior front",
+   "backyard",
+   "staircase",
+   "primary bedroom",
+   "laundry room",
+   "office",
+   "garage"
+] as const;
+export type CoverImage = typeof CoverImageValues[number];
 
 export interface SearchRequest extends ApiRequest {
    agent?: string[];
@@ -461,7 +463,11 @@ export interface SearchRequest extends ApiRequest {
    searchFields?: string;
    sortBy?: SortBy;
    sqft?: string[];
-   /** it's coma-separated string of Statistics enum values but we cannot type it properly in TS now */
+   /** 
+    * Coma-separated string of Statistics values but we cannot type it properly in TS now
+    * 
+    *  @example: "med-soldPrice,avg-soldPrice,grp-yr"
+    */
    statistics?: string;
    status?: Status[];
    streetDirection?: StreetDirection[];
@@ -604,9 +610,9 @@ export interface LocationsResponse extends ApiResponse {
          name: string;
          updatedOn: string;
          classes: [
-            ClassWithAreas<Class.condo>, 
-            ClassWithAreas<Class.residential>, 
-            ClassWithAreas<Class.commercial> 
+            ClassWithAreas<"condo">, 
+            ClassWithAreas<"residential">, 
+            ClassWithAreas<"commercial"> 
          ];
       },
    ];
