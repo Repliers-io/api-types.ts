@@ -2,7 +2,7 @@ import { ApiRequest, ApiResponse, YesNo } from "./index.js";
 
 export interface Estimate {
    estimateId: number;
-   clientId: number;
+   clientId?: number;
    createdOn: string;
    updatedOn: string | null;
    estimate: number;
@@ -36,6 +36,7 @@ export interface Estimate {
    history?: {
       mth: Record<string, { value: number }>;
    };
+   sendEmailMonthly?: boolean;
 }
 
 export interface AddCondominium {

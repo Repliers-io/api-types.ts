@@ -162,6 +162,8 @@ export enum Statistics {
    "grp-mth" = "grp-mth",
    "grp-yr" = "grp-yr",
    "grp-day" = "grp-day",
+   "avg-tax" = "avg-tax",
+   "med-tax" = "med-tax",
 }
 
 export enum Status {
