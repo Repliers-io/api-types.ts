@@ -17,6 +17,7 @@ export interface Estimate {
          streetSuffix: string;
          zip: string;
       };
+      //TODO: this must be extended
       details: Record<string, unknown>;
       taxes: {
          annualAmount: number;
@@ -25,6 +26,7 @@ export interface Estimate {
          latitude: number;
          longitude: number;
       };
+      //TODO: this must be extended
       condominium: Record<string, unknown>;
       lot: {
          acres: string;
@@ -51,7 +53,7 @@ export interface AddCondominium {
       taxesIncl?: YesNo;
       waterIncl?: YesNo;
    };
-   parkingType?: string;
+   parkingType?: string; // add | array
    //TODO: pets depend on the board so must be string OR ARRAY
    pets?: "N" | "Restrict";
    stories?: number;
@@ -70,25 +72,25 @@ export interface AddRequest extends ApiRequest {
    };
    condominium?: AddCondominium;
    details?: {
-      basement1?: string;
+      basement1?: string; // TODO: add | array
       basement2?: string;
       driveway?: string;
-      exteriorConstruction1?: string;
+      exteriorConstruction1?: string; // TODO: add | array
       exteriorConstruction2?: string;
       extras: string;
       garage?: string;
-      heating?: string;
+      heating?: string; // TODO: add | array
       numBathrooms: number;
       numBathroomsPlus?: number;
       numBedrooms: number;
       numBedroomsPlus?: number;
-      numFireplaces?: YesNo;
+      numFireplaces?: YesNo; // TODO: add | number
       numGarageSpaces?: number;
       numParkingSpaces?: number;
       propertyType: string;
       sqft: number;
       style: string;
-      swimmingPool?: string;
+      swimmingPool?: string; //TODO: add | array
       yearBuilt?: string;
    };
    lot?: {
