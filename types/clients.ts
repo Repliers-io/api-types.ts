@@ -1,5 +1,6 @@
 import { Estimate } from "./estimate.js";
-import { ApiRequest, ApiResponse, Operator } from "./index.js";
+import { ApiRequest, ApiResponse, Operator, Class } from "./index.js";
+import * as Searches from "./searches.js";
 
 export interface Client {
    clientId: number;
@@ -19,10 +20,13 @@ export interface Client {
       whatsapp: boolean;
    };
    expiryDate: null | unknown;
-   // TODO: Searches.CreateResponse or similar should go here
-   searches: unknown[]; 
+   searches?: Omit<Searches.CreateResponse, "class"> & {
+      //TODO: classes name is a bug and should be fixed soon
+      classes?: Class[];
+   }[]; 
    createdOn: string;
-   estimates: Estimate[];
+   estimates?: Estimate[];
+   externalId: string | null;
 }
 
 export interface CreateRequest extends ApiRequest {
@@ -56,18 +60,17 @@ export interface CreateRequest extends ApiRequest {
     * @defaultValue `true`
     */
    showSavedSearches?: boolean;
+   externalId?: string;
 }
 
 export interface CreateResponse extends ApiResponse, Client {}
 
-export interface UpdateRequest extends Omit<CreateRequest, "email">, ApiRequest {
+export interface UpdateRequest extends CreateRequest, ApiRequest {
    clientId: number;
 }
 
-//TODO: add response details
-export interface UpdateResponse extends ApiResponse {}
+export interface UpdateResponse extends ApiResponse, Client {}
 
-//TODO: add response details
 export interface DeleteResponse extends ApiResponse {}
 export interface GetResponse extends ApiResponse, Client {}
 

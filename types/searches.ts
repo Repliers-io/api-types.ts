@@ -1,4 +1,22 @@
 import { ApiRequest, ApiResponse, Class, Type } from "./index.js";
+import * as Clients from "./clients.js";
+
+/**
+ * TODO: add to docs
+ * 
+ * minSqft
+ * maxSqft
+ * minYearBuilt 
+ * maxYearBuilt
+ * minStories
+ * maxStories
+ * maxCoveredSpaces
+ * minCoveredSpaces
+ * amenities
+ * keywords
+ * pets
+ * 
+ */
 
 export interface CreateRequest extends ApiRequest {
    clientId: number;
@@ -12,7 +30,7 @@ export interface CreateRequest extends ApiRequest {
    maxBaths?: number;
    areas?: string[];
    cities?: string[];
-   neighborhoods?: string;
+   neighborhoods?: string[];
    notificationFrequency?: "instant" | "daily" | "weekly" | "monthly";
    minPrice: number;
    maxPrice: number;
@@ -21,7 +39,7 @@ export interface CreateRequest extends ApiRequest {
    map?: string;
    status?: boolean;
    type: Type;
-   class: Class;
+   class?: Class[];
    minGarageSpaces?: number;
    minKitchens?: number;
    minParkingSpaces?: number;
@@ -33,11 +51,18 @@ export interface CreateRequest extends ApiRequest {
    heating?: string[];
    swimmingPool?: string[];
 }
-export interface CreateResponse extends ApiResponse {}
+export interface CreateResponse extends ApiResponse, Omit<CreateRequest, "class">
+{
+   searchId: number;
+   agentId: number;
+   client: Pick<Clients.Client, "fname" | "lname" | "email" | "phone">;
+}
 
+//TODO: update type
 export interface UpdateRequest extends ApiRequest {
    searchId: number;
 }
+//TODO: update type
 export interface UpdateResponse extends ApiResponse {}
 
 export interface FilterRequest extends ApiRequest {
@@ -48,12 +73,7 @@ export interface FilterResponse extends ApiResponse {
    numPages: number;
    pageSize: number;
    count: number;
-   searches: [
-      {
-         [key: string]: unknown;
-         searchId: number;
-      },
-   ];
+   searches: CreateResponse[];
 }
 
 export interface DeleteRequest extends ApiRequest {

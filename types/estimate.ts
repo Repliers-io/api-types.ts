@@ -52,6 +52,7 @@ export interface AddCondominium {
       waterIncl?: YesNo;
    };
    parkingType?: string;
+   //TODO: pets depend on the board so must be string OR ARRAY
    pets?: "N" | "Restrict";
    stories?: number;
 }
