@@ -1,0 +1,8 @@
+{
+   "editor.insertSpaces": true,
+   "editor.indentSize": "tabSize",
+   "editor.tabSize": 3,
+   "files.eol": "\n",
+   "files.trimFinalNewlines": false,
+   "files.trimTrailingWhitespace": true
+}

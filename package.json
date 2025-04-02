@@ -1,7 +1,7 @@
 {
-   "name": "@repliers.io/api-types",
-   "version": "0.3.7",
-   "description": "Typings for repliers API",
+   "name": "@types/repliers-api",
+   "version": "0.4",
+   "description": "Types for Repliers Realtime API",
    "typings": "types/index.ts",
    "main": "types/index.ts",
    "type": "module",
