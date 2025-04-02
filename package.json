@@ -1,5 +1,5 @@
 {
-   "name": "@types/repliers-api",
+   "name": "@repliers.io/api-types",
    "version": "0.4.0",
    "description": "Types for Repliers Realtime API",
    "typings": "types/index.ts",
