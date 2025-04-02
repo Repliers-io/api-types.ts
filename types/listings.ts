@@ -30,18 +30,38 @@ export interface Bathroom {
 }
 
 export interface Timestamp {
+   /** timestamp when the listing was last updated inside IDX feed  */
    idxUpdated?: string | null;
+
+   /** timestamp when the listing was last updated inside MLS  */
    listingUpdated?: string | null;
+
+   /** timestamp when listing photos were last updated inside MLS  */
    photosUpdated?: string | null;
+
    conditionalExpiryDate?: string | null;
+
+   /** timestamp when the listing was Terminated inside MLS  */
    terminatedDate?: string | null;
+
+   /** timestamp when the listing was Suspended inside MLS  */
    suspendedDate?: string | null;
+
+   /** timestamp when the listing was initially created inside MLS  */
    listingEntryDate?: string | null;
+
    closedDate?: string | null;
+
+   /** timestamp when the listing became unavailable inside MLS  */
    unavailableDate?: string | null;
+
+   /** timestamp when the listing will expired inside MLS  */
    expiryDate?: string | null;
+
    extensionEntryDate?: string | null;
    possessionDate?: string | null;
+   
+   /** timestamp when the listing was last updated inside Repliers  */
    repliersUpdatedOn?: string;
 }
 
@@ -202,12 +222,12 @@ export interface Listing extends Record<string, unknown> {
    status?: Status;
    class?: Class;
    type?: Type;
-   listPrice?: string;
+   listPrice?: string; // WHY String in V2 ? soldPrice, originalPrice is number in V2
    listDate?: string; 
    lastStatus?: LastStatus;
-   soldPrice?: string; // 0.00
+   soldPrice?: string | null; // 0.00
    soldDate?: string | null;
-   originalPrice?: string | null;
+   originalPrice?: string;
    assignment?: string | null;
    address?: Address;
    map?: Map;
@@ -225,7 +245,7 @@ export interface Listing extends Record<string, unknown> {
    condominium?: Condominium;
    coopCompensation?: string | null;
    lot?: {
-      acres?: string | null; //V2: number
+      acres?: string | null; //V2: number ??
       depth?: string | null; //V2: number??
       irregular?: string | null;
       legalDescription?: string | null;
@@ -323,27 +343,29 @@ export interface ImageSearchUrl extends ImageSearchItemBase {
 
 export type ImageSearchItem = ImageSearchValue | ImageSearchUrl;
 
-export enum StreetDirection {
-   N = "n",
-   E = "e",
-   W = "w",
-   S = "s",
-   Empty = "",
-}
+export const StreetDirectionValues = [
+   "n",
+   "e",
+   "w",
+   "s",
+   ""
+] as const;
+export type StreetDirection = typeof StreetDirectionValues[number];
 
-export enum CoverImage {
-   kitchen = "kitchen",
-   "powder room" = "powder room",
-   ensuite = "ensuite",
-   "family room" = "family room",
-   "exterior front" = "exterior front",
-   backyard = "backyard",
-   staircase = "staircase",
-   "primary bedroom" = "primary bedroom",
-   "laundry room" = "laundry room",
-   office = "office",
-   garage = "garage",
-}
+export const CoverImageValues = [
+   "kitchen",
+   "powder room",
+   "ensuite",
+   "family room",
+   "exterior front",
+   "backyard",
+   "staircase",
+   "primary bedroom",
+   "laundry room",
+   "office",
+   "garage"
+] as const;
+export type CoverImage = typeof CoverImageValues[number];
 
 export interface SearchRequest extends ApiRequest {
    agent?: string[];
@@ -441,7 +463,11 @@ export interface SearchRequest extends ApiRequest {
    searchFields?: string;
    sortBy?: SortBy;
    sqft?: string[];
-   /** it's coma-separated string of Statistics enum values but we cannot type it properly in TS now */
+   /** 
+    * Coma-separated string of Statistics values but we cannot type it properly in TS now
+    * 
+    *  @example: "med-soldPrice,avg-soldPrice,grp-yr"
+    */
    statistics?: string;
    status?: Status[];
    streetDirection?: StreetDirection[];
@@ -584,9 +610,9 @@ export interface LocationsResponse extends ApiResponse {
          name: string;
          updatedOn: string;
          classes: [
-            ClassWithAreas<Class.condo>, 
-            ClassWithAreas<Class.residential>, 
-            ClassWithAreas<Class.commercial> 
+            ClassWithAreas<"condo">, 
+            ClassWithAreas<"residential">, 
+            ClassWithAreas<"commercial"> 
          ];
       },
    ];

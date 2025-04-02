@@ -1,4 +1,6 @@
-import { ApiRequest, ApiResponse, Operator } from "./index.js";
+import { Estimate } from "./estimate.js";
+import { ApiRequest, ApiResponse, Operator, Class } from "./index.js";
+import * as Searches from "./searches.js";
 
 export interface Client {
    clientId: number;
@@ -18,35 +20,57 @@ export interface Client {
       whatsapp: boolean;
    };
    expiryDate: null | unknown;
-   searches: unknown[];
+   searches?: Omit<Searches.CreateResponse, "class"> & {
+      //TODO: classes name is a bug and should be fixed soon
+      classes?: Class[];
+   }[]; 
    createdOn: string;
+   estimates?: Estimate[];
+   externalId: string | null;
 }
 
 export interface CreateRequest extends ApiRequest {
-   agentId: number;
+   agentId?: number;
+   clientId?: number;
+   email?: string;
    fname?: string;
    lname?: string;
-   phone?: string;
-   email?: string;
+   /**
+    * One or more keywords may be specified to filter the results by. Useful for searching clients. If specified all other params are ignored.  
+    * */
+   keywords?: string;
+   phone?: number;
    status?: boolean;
-   preferences?: {
-      email: boolean;
-      sms: boolean;
-      unsubscribe: boolean;
-   };
+   /**
+    * Determines the search condition applied to the filters. If EXACT, requires that the given value for one or more params is an exact match of the stored value. If CONTAINS, requires that the given value for one or more params is contained within the stored value.
+    */
+   conditions?: "EXACT" | "CONTAINS";
+   /**
+    * Determines the search logic applied to the filters. If OR, requires that one or more params contain/equal the given value. If AND, requires that all params contain/equal the given value.
+    */
+   operator?: "AND" | "OR";
+   pageNum?: number;
+   resultsPerPage?: number;
+   /**
+    * One or more comma separated strings that can be used to filter clients. For example GET /clients?tags=buyer,toronto. The response contains clients that have any of the tags specified.
+    */
    tags?: string[];
+   /**
+    * Enables automatic retrieval of Saved Searches for each client in the response. For best performance it's recommended to disable this setting if Saved Searches are not required.
+    * @defaultValue `true`
+    */
+   showSavedSearches?: boolean;
+   externalId?: string;
 }
 
 export interface CreateResponse extends ApiResponse, Client {}
 
-export interface UpdateRequest extends Omit<CreateRequest, "email">, ApiRequest {
+export interface UpdateRequest extends CreateRequest, ApiRequest {
    clientId: number;
 }
 
-//TODO: add response details
-export interface UpdateResponse extends ApiResponse {}
+export interface UpdateResponse extends ApiResponse, Client {}
 
-//TODO: add response details
 export interface DeleteResponse extends ApiResponse {}
 export interface GetResponse extends ApiResponse, Client {}
 
